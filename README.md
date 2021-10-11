@@ -6,6 +6,8 @@ Reload object in Xamarin.iOS and Xamarin.Android let you enjoy coding UI
 Use socket send class library's .dll to android or ios app,then app load the method in library to run,
 so if you use UIView as the parameter of the method, you can redraw UIView at the .dll.
 
+Very simple, you can do it by youself,let it more fit youself.
+
 # How to use
 ## First
 For your project creat a xamarin.android or xamarin.ios class library project.
