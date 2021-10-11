@@ -1,13 +1,19 @@
 ﻿using Foundation;
 using UIKit;
+using HotReload;
 
 namespace HotReloadPage.iOS
 {
+
+
     // The UIApplicationDelegate for the application. This class is responsible for launching the
     // User Interface of the application, as well as listening (and optionally responding) to application events from iOS.
     [Register ("AppDelegate")]
     public class AppDelegate : UIResponder, IUIApplicationDelegate {
-    
+        public static string IP = "192.168.0.107";
+        public static int Port = 350;
+        public static HotReloadClient ReloadClient;
+
         [Export("window")]
         public UIWindow Window { get; set; }
 
@@ -16,6 +22,8 @@ namespace HotReloadPage.iOS
         {
             // Override point for customization after application launch.
             // If not required for your application you can safely delete this method
+            ReloadClient = new HotReloadClient(IP, Port);
+            ReloadClient.Start();
             return true;
         }
 

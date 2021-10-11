@@ -8,26 +8,23 @@ using Android.Views;
 using Android.Widget;
 using AndroidX.ConstraintLayout.Widget;
 using AndroidX.Fragment.App;
-using HotReload.Message.Droid;
 using HotReloadPage.Edit.Droid;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Xamarin.Essentials;
 
 namespace HotReloadPage
 {
     public class MainFragment : Fragment
     {
-        HotReloadClient Client;
-        public static string IP = "192.168.0.107";
-        public static int Port = 400;
         public override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
 
             // Create your fragment here
-            Client = new HotReloadClient(this, "HotReloadPage.Edit.Droid", IP,Port);
+            
         }
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -37,25 +34,34 @@ namespace HotReloadPage
             var rootView = new ConstraintLayout(this.Activity) { Id = View.GenerateViewId() };
             var page = new ConstraintLayout(this.Activity) { Id = View.GenerateViewId() };
             rootView.AddView(page, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MatchParent, ViewGroup.LayoutParams.MatchParent));
-            new MainFragment_Init().Init(this, page);
+            new MainFragment_Init().Reload(this, page);
             return rootView;
         }
 
         public override void OnStart()
         {
             base.OnStart();
-            Client.Start();
+            MainActivity.ReloadClient.Reload += ReloadClient_Reload;
+        }
+
+        private void ReloadClient_Reload(string path)
+        {
+            //重新设置MainPage
+            ((ViewGroup)this.View).RemoveAllViews();//根View不知道怎么替换,选择移除根View的子View
+            var peerRootView = new ConstraintLayout(this.Activity);//根View的相邻子View
+            ((ViewGroup)this.View).AddView(peerRootView, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MatchParent, ViewGroup.LayoutParams.MatchParent));
+            MainActivity.ReloadClient.ReloadType<MainFragment_Init>(this, this.View);
         }
 
         public override void OnStop()
         {
             base.OnStop();
-            Client.Stop();
+            MainActivity.ReloadClient.Reload -= ReloadClient_Reload;
         }
+
         public override void OnDestroy()
         {
             base.OnDestroy();
-            Client.Dispose();
         }
     }
 }

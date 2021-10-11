@@ -1,4 +1,4 @@
-﻿using HotReload.Message;
+﻿using HotReload;
 using System;
 using System.IO;
 using System.Reflection;
@@ -11,7 +11,7 @@ namespace HotReloadPage.Server.ConsoleApp
 {
     internal class Program
     {
-        static ServerProgram Server;
+        static MessageServer Server;
         static CompileClassServer compileClassServer = new CompileClassServer();
         static void Main(string[] args)
         {
@@ -31,7 +31,7 @@ namespace HotReloadPage.Server.ConsoleApp
             Console.WriteLine("指定服务器端口(300-500)");
             command = Console.ReadLine();
             var port = int.Parse(command);
-            Server = ServerProgram.CreatServerProgram(port);
+            Server = MessageServer.CreatMessageServer(port);
             Console.WriteLine("服务器IP:" + Server.MyIp + " Pot:" + Server.Port);
 
             Console.WriteLine("--------------现在需要一些配置---------------");

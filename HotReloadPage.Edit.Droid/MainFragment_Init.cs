@@ -2,18 +2,19 @@
 using Android.Views;
 using Android.Widget;
 using AndroidX.Fragment.App;
-using HotReload.Message.Droid;
+using HotReload;
+
 
 
 namespace HotReloadPage.Edit.Droid
 {
-    public  class MainFragment_Init:IFragment_Init
+    public  class MainFragment_Init:IReload
     {
-
-        public void Init(Fragment controller, ViewGroup page)
+        public void Reload(object controller, object view)
         {
-            page.SetBackgroundColor(Color.Orange);
-            page.AddView(new TextView(page.Context) { Text="Why"});
+            ViewGroup page = view as ViewGroup;
+            page.SetBackgroundColor(Color.Green);
+            page.AddView(new TextView(page.Context) { Text="Why? Do you know? If you don't know?",TextSize=100});
         }
     }
 }

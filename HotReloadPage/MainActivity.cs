@@ -11,12 +11,16 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Android.Content;
+using HotReload;
 
 namespace HotReloadPage
 {
     [Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = true)]
     public class MainActivity : AppCompatActivity
     {
+        public static string IP = "192.168.0.107";
+        public static int Port = 400;
+        public static HotReloadClient ReloadClient;
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -27,6 +31,9 @@ namespace HotReloadPage
             var transaction = SupportFragmentManager.BeginTransaction();
             transaction.Replace(Resource.Id.frame_layout, new MainFragment());
             transaction.Commit();
+
+            ReloadClient = new HotReloadClient(IP, Port);
+            ReloadClient.Start();
         }
 
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)

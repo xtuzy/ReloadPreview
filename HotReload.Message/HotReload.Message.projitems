@@ -6,14 +6,11 @@
     <SharedGUID>9f28dd7a-7c88-4fb1-b94d-e1fbe8928436</SharedGUID>
   </PropertyGroup>
   <PropertyGroup Label="Configuration">
-    <Import_RootNamespace>HotReload.Message</Import_RootNamespace>
+    <Import_RootNamespace>HotReload</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)ClientAppProgram.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ClientProgram.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)HotReloadClient.Android.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)HotReloadClient.iOS.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ServerAppProgram.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ServerProgram.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MessageClient.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)HotReloadClient.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MessageServer.cs" />
   </ItemGroup>
 </Project>

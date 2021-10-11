@@ -1,5 +1,5 @@
 ﻿using Foundation;
-using HotReload.Message.iOS;
+using HotReload;
 using SkiaSharp;
 using System;
 using System.Collections.Generic;
@@ -9,16 +9,17 @@ using UIKit;
 
 namespace HotReloadPage.Edit.iOS
 {
-    public partial  class ViewController_Init:IUIViewController_Init
+    public partial  class ViewController_Init:IReload
     {
         UIView Page;
         UITextField text;
-        public void Init(UIViewController controller,UIView page)
+        public void Reload(object controller,object view)
         {
-            this.Page = page;
-            Page.BackgroundColor = UIColor.Orange;
+            this.Page = (UIView)view;
+            Page.BackgroundColor = UIColor.Green;
 
             text = new UITextField() { Text = "好的啊宝贝", TranslatesAutoresizingMaskIntoConstraints = false };
+            
             Page.AddSubview(text);
 
             var button = new UIButton(UIButtonType.RoundedRect) { TranslatesAutoresizingMaskIntoConstraints = false };
@@ -56,12 +57,13 @@ namespace HotReloadPage.Edit.iOS
         {
             var h = e.Info.Height;
             var w = e.Info.Width;
-            e.Surface.Canvas.DrawRect(new SKRect(0, 0, w, h), new SKPaint() { Color = SKColors. Black});
+            e.Surface.Canvas.DrawRect(new SKRect(0, 0, w, h), new SKPaint() { Color = SKColors. Red});
         }
 
         private void Button_Click(object sender, System.EventArgs e)
         {
-            text.TextColor = UIColor.Blue;
+            text.Font = UIFont.SystemFontOfSize(40);
+            text.TextColor = UIColor.Red;
         }
     }
 }

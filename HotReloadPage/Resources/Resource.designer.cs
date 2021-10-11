@@ -14,7 +14,7 @@ namespace HotReloadPage
 {
 	
 	
-	[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Android.Build.Tasks", "1.0.0.0")]
+	[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Android.Build.Tasks", "12.0.99.19")]
 	public partial class Resource
 	{
 		
@@ -25,6 +25,8 @@ namespace HotReloadPage
 		
 		public static void UpdateIdValues()
 		{
+			global::HotReload.Droid.Resource.String.app_name = global::HotReloadPage.Resource.String.app_name;
+			global::HotReload.Droid.Resource.String.hello = global::HotReloadPage.Resource.String.hello;
 			global::HotReloadPage.Edit.Droid.Resource.Animation.abc_fade_in = global::HotReloadPage.Resource.Animation.abc_fade_in;
 			global::HotReloadPage.Edit.Droid.Resource.Animation.abc_fade_out = global::HotReloadPage.Resource.Animation.abc_fade_out;
 			global::HotReloadPage.Edit.Droid.Resource.Animation.abc_grow_fade_in_from_bottom = global::HotReloadPage.Resource.Animation.abc_grow_fade_in_from_bottom;
@@ -382,10 +384,6 @@ namespace HotReloadPage
 			global::HotReloadPage.Edit.Droid.Resource.Color.bright_foreground_inverse_material_light = global::HotReloadPage.Resource.Color.bright_foreground_inverse_material_light;
 			global::HotReloadPage.Edit.Droid.Resource.Color.bright_foreground_material_dark = global::HotReloadPage.Resource.Color.bright_foreground_material_dark;
 			global::HotReloadPage.Edit.Droid.Resource.Color.bright_foreground_material_light = global::HotReloadPage.Resource.Color.bright_foreground_material_light;
-			global::HotReloadPage.Edit.Droid.Resource.Color.browser_actions_bg_grey = global::HotReloadPage.Resource.Color.browser_actions_bg_grey;
-			global::HotReloadPage.Edit.Droid.Resource.Color.browser_actions_divider_color = global::HotReloadPage.Resource.Color.browser_actions_divider_color;
-			global::HotReloadPage.Edit.Droid.Resource.Color.browser_actions_text_color = global::HotReloadPage.Resource.Color.browser_actions_text_color;
-			global::HotReloadPage.Edit.Droid.Resource.Color.browser_actions_title_color = global::HotReloadPage.Resource.Color.browser_actions_title_color;
 			global::HotReloadPage.Edit.Droid.Resource.Color.button_material_dark = global::HotReloadPage.Resource.Color.button_material_dark;
 			global::HotReloadPage.Edit.Droid.Resource.Color.button_material_light = global::HotReloadPage.Resource.Color.button_material_light;
 			global::HotReloadPage.Edit.Droid.Resource.Color.dim_foreground_disabled_material_dark = global::HotReloadPage.Resource.Color.dim_foreground_disabled_material_dark;
@@ -515,8 +513,6 @@ namespace HotReloadPage
 			global::HotReloadPage.Edit.Droid.Resource.Dimension.abc_text_size_subtitle_material_toolbar = global::HotReloadPage.Resource.Dimension.abc_text_size_subtitle_material_toolbar;
 			global::HotReloadPage.Edit.Droid.Resource.Dimension.abc_text_size_title_material = global::HotReloadPage.Resource.Dimension.abc_text_size_title_material;
 			global::HotReloadPage.Edit.Droid.Resource.Dimension.abc_text_size_title_material_toolbar = global::HotReloadPage.Resource.Dimension.abc_text_size_title_material_toolbar;
-			global::HotReloadPage.Edit.Droid.Resource.Dimension.browser_actions_context_menu_max_width = global::HotReloadPage.Resource.Dimension.browser_actions_context_menu_max_width;
-			global::HotReloadPage.Edit.Droid.Resource.Dimension.browser_actions_context_menu_min_padding = global::HotReloadPage.Resource.Dimension.browser_actions_context_menu_min_padding;
 			global::HotReloadPage.Edit.Droid.Resource.Dimension.compat_button_inset_horizontal_material = global::HotReloadPage.Resource.Dimension.compat_button_inset_horizontal_material;
 			global::HotReloadPage.Edit.Droid.Resource.Dimension.compat_button_inset_vertical_material = global::HotReloadPage.Resource.Dimension.compat_button_inset_vertical_material;
 			global::HotReloadPage.Edit.Droid.Resource.Dimension.compat_button_padding_horizontal_material = global::HotReloadPage.Resource.Dimension.compat_button_padding_horizontal_material;
@@ -718,11 +714,6 @@ namespace HotReloadPage
 			global::HotReloadPage.Edit.Droid.Resource.Id.beginning = global::HotReloadPage.Resource.Id.beginning;
 			global::HotReloadPage.Edit.Droid.Resource.Id.blocking = global::HotReloadPage.Resource.Id.blocking;
 			global::HotReloadPage.Edit.Droid.Resource.Id.bottom = global::HotReloadPage.Resource.Id.bottom;
-			global::HotReloadPage.Edit.Droid.Resource.Id.browser_actions_header_text = global::HotReloadPage.Resource.Id.browser_actions_header_text;
-			global::HotReloadPage.Edit.Droid.Resource.Id.browser_actions_menu_items = global::HotReloadPage.Resource.Id.browser_actions_menu_items;
-			global::HotReloadPage.Edit.Droid.Resource.Id.browser_actions_menu_item_icon = global::HotReloadPage.Resource.Id.browser_actions_menu_item_icon;
-			global::HotReloadPage.Edit.Droid.Resource.Id.browser_actions_menu_item_text = global::HotReloadPage.Resource.Id.browser_actions_menu_item_text;
-			global::HotReloadPage.Edit.Droid.Resource.Id.browser_actions_menu_view = global::HotReloadPage.Resource.Id.browser_actions_menu_view;
 			global::HotReloadPage.Edit.Droid.Resource.Id.buttonPanel = global::HotReloadPage.Resource.Id.buttonPanel;
 			global::HotReloadPage.Edit.Droid.Resource.Id.center_vertical = global::HotReloadPage.Resource.Id.center_vertical;
 			global::HotReloadPage.Edit.Droid.Resource.Id.checkbox = global::HotReloadPage.Resource.Id.checkbox;
@@ -879,8 +870,6 @@ namespace HotReloadPage
 			global::HotReloadPage.Edit.Droid.Resource.Layout.abc_search_view = global::HotReloadPage.Resource.Layout.abc_search_view;
 			global::HotReloadPage.Edit.Droid.Resource.Layout.abc_select_dialog_material = global::HotReloadPage.Resource.Layout.abc_select_dialog_material;
 			global::HotReloadPage.Edit.Droid.Resource.Layout.abc_tooltip = global::HotReloadPage.Resource.Layout.abc_tooltip;
-			global::HotReloadPage.Edit.Droid.Resource.Layout.browser_actions_context_menu_page = global::HotReloadPage.Resource.Layout.browser_actions_context_menu_page;
-			global::HotReloadPage.Edit.Droid.Resource.Layout.browser_actions_context_menu_row = global::HotReloadPage.Resource.Layout.browser_actions_context_menu_row;
 			global::HotReloadPage.Edit.Droid.Resource.Layout.custom_dialog = global::HotReloadPage.Resource.Layout.custom_dialog;
 			global::HotReloadPage.Edit.Droid.Resource.Layout.notification_action = global::HotReloadPage.Resource.Layout.notification_action;
 			global::HotReloadPage.Edit.Droid.Resource.Layout.notification_action_tombstone = global::HotReloadPage.Resource.Layout.notification_action_tombstone;
@@ -920,10 +909,6 @@ namespace HotReloadPage
 			global::HotReloadPage.Edit.Droid.Resource.String.abc_shareactionprovider_share_with_application = global::HotReloadPage.Resource.String.abc_shareactionprovider_share_with_application;
 			global::HotReloadPage.Edit.Droid.Resource.String.abc_toolbar_collapse_description = global::HotReloadPage.Resource.String.abc_toolbar_collapse_description;
 			global::HotReloadPage.Edit.Droid.Resource.String.app_name = global::HotReloadPage.Resource.String.app_name;
-			global::HotReloadPage.Edit.Droid.Resource.String.copy_toast_msg = global::HotReloadPage.Resource.String.copy_toast_msg;
-			global::HotReloadPage.Edit.Droid.Resource.String.fallback_menu_item_copy_link = global::HotReloadPage.Resource.String.fallback_menu_item_copy_link;
-			global::HotReloadPage.Edit.Droid.Resource.String.fallback_menu_item_open_in_browser = global::HotReloadPage.Resource.String.fallback_menu_item_open_in_browser;
-			global::HotReloadPage.Edit.Droid.Resource.String.fallback_menu_item_share_link = global::HotReloadPage.Resource.String.fallback_menu_item_share_link;
 			global::HotReloadPage.Edit.Droid.Resource.String.hello = global::HotReloadPage.Resource.String.hello;
 			global::HotReloadPage.Edit.Droid.Resource.String.search_menu_title = global::HotReloadPage.Resource.String.search_menu_title;
 			global::HotReloadPage.Edit.Droid.Resource.String.status_bar_notification_info_overflow = global::HotReloadPage.Resource.String.status_bar_notification_info_overflow;
@@ -1759,8 +1744,6 @@ namespace HotReloadPage
 			global::HotReloadPage.Edit.Droid.Resource.Styleable.View_paddingEnd = global::HotReloadPage.Resource.Styleable.View_paddingEnd;
 			global::HotReloadPage.Edit.Droid.Resource.Styleable.View_paddingStart = global::HotReloadPage.Resource.Styleable.View_paddingStart;
 			global::HotReloadPage.Edit.Droid.Resource.Styleable.View_theme = global::HotReloadPage.Resource.Styleable.View_theme;
-			global::HotReloadPage.Edit.Droid.Resource.Xml.image_share_filepaths = global::HotReloadPage.Resource.Xml.image_share_filepaths;
-			global::HotReloadPage.Edit.Droid.Resource.Xml.xamarin_essentials_fileprovider_file_paths = global::HotReloadPage.Resource.Xml.xamarin_essentials_fileprovider_file_paths;
 			global::Xamarin.Essentials.Resource.Attribute.alpha = global::HotReloadPage.Resource.Attribute.alpha;
 			global::Xamarin.Essentials.Resource.Attribute.font = global::HotReloadPage.Resource.Attribute.font;
 			global::Xamarin.Essentials.Resource.Attribute.fontProviderAuthority = global::HotReloadPage.Resource.Attribute.fontProviderAuthority;
