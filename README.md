@@ -9,6 +9,8 @@ so if you use UIView as the parameter of the method, you can redraw UIView at th
 Very simple, you can do it by youself,let it more fit youself.
 
 # How to use
+I upload a example at youtube https://www.youtube.com/watch?v=nbjJQ9UNVDQ
+
 ## First
 For your project creat a xamarin.android or xamarin.ios class library project.
 Install nuget [HotReload.iOS](https://www.nuget.org/packages/HotReload.iOS/) or [HotReload.Droid](https://www.nuget.org/packages/HotReload.Droid/) at your project and class library project.
