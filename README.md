@@ -1,12 +1,12 @@
-# HotReloadPage
-Reload object in Xamarin.iOS and Xamarin.Android let you enjoy coding UI
+# ReloadPreview
+Preview UI code by reloading ui object in Xamarin.iOS, Xamarin.Android,Xmarin.Mac, let you enjoy coding UI
 
 # How it work
 
 Use socket send class library's .dll to android or ios app,then app load the method in library to run,
 so if you use UIView as the parameter of the method, you can redraw UIView at the .dll.
 
-Very simple, you can do it by youself,let it more fit youself.
+Very simple, you can do it by youself,let it more fit youself,such as auto build.
 
 # How to use
 I upload a example at youtube https://www.youtube.com/watch?v=nbjJQ9UNVDQ
