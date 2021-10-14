@@ -12,8 +12,8 @@ Very simple, you can do it by youself,let it more fit youself,such as auto build
 I upload a example at youtube https://www.youtube.com/watch?v=nbjJQ9UNVDQ
 
 ## First
-For your project creat a xamarin.android or xamarin.ios class library project.
-Install nuget [HotReload.iOS](https://www.nuget.org/packages/HotReload.iOS/) or [HotReload.Droid](https://www.nuget.org/packages/HotReload.Droid/) at your project and class library project.
+For your project creat a xamarin.android or xamarin.ios or xamarin.mac *Class Library* project.
+Install nuget ReloadPreview at your App project and *Class Library* project.
 
 At Android's App.cs and iOS's Main.cs or AppDelegate.cs Creat static ReloadClient object, such as:
 ```
@@ -26,7 +26,7 @@ namespace MyAndroidApp
     [Application]
     public class App : Application
     {
-        public static HotReload.HotReloadClient  Client;
+        public static ReloadClient  Client;
         public App(IntPtr handle, JniHandleOwnership ownerShip) : base(handle, ownerShip)
         {
         }
@@ -34,7 +34,7 @@ namespace MyAndroidApp
         public override void OnCreate()
         {
             //Here input the http and port information at server app
-            Client = new HotReload.HotReloadClient("192.168.0.107", 400);
+            Client = new ReloadClient("192.168.0.107", 400);
             Client.Start();
             base.OnCreate();
         }
@@ -78,7 +78,7 @@ At activity or fragment or viewcontroller load Reload event,
         AppDelegate.ReloadClient.Reload -= ReloadClient_Reload;
     }
 
-    private void ReloadClient_Reload(string path)
+    private void ReloadClient_Reload(object sender, EventArgs e)
     {
         //Here use you want redraw view as para.
         //ReloadUIView is a class in class library, it constains Reload method
@@ -88,7 +88,7 @@ At activity or fragment or viewcontroller load Reload event,
 
 ```
 
-At class library , you can create class extend IReload, then redraw View, you can do many things, *but you can't create a class extend android or ios's native object, and when you use nuget at  class library,also need install it at main project.*
+At Class Library , you can create class extend IReload, then redraw View, you can do many things, *but you can't create a class extend android or ios's native object, and when you use nuget at  class library,also need install it at main app project.*
 ```
 public  class ReloadUIView:IReload
 {
@@ -102,7 +102,7 @@ public  class ReloadUIView:IReload
 
 ```
 ## Second
-From Release Download [HotReload.Server.ConsoleApp.zip](https://github.com/xtuzy/HotReloadPage/releases/download/V1.0/HotReload.Server.ConsoleApp.zip), Unzip , Run it on Windows.
+From Release Download ReloadPreview.Server.ConsoleApp.zip Unzip , Run it on Windows.
 If need choose y/n , all choose y. 
 If need input port number, input it, you need use it in you app.
 If need input dll path, copy the .dll path of the class library project generate.
