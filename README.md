@@ -103,6 +103,7 @@ public  class ReloadUIView:IReload
 ```
 ## Second
 From Release Download ReloadPreview.Server.ConsoleApp.zip Unzip , Run it on Windows.
+From Release Download and Install Extension, use it to auto build you project at background thread when you save code.
 If need choose y/n , all choose y. 
 If need input port number, input it, you need use it in you app.
 If need input dll path, copy the .dll path of the class library project generate.
@@ -110,3 +111,7 @@ If need input dll path, copy the .dll path of the class library project generate
 ## Final
 Run app, let it install,then you don't need VisualStudio to run it,just need open it on Device or Emulater. Change class library code, At visual studio build it, app will change something.
 
+# Tips
+- 2021.10.21
+  
+  I found when you close "Edit and Continue" at Visual Studio 2022, you can use "Apply Changes" of Visual Studio to continue debug, At Android, "Apply Changes" will kill current Activity, and reload the Activity in apk, it can't let app auto load the new dll, so ReloadPreview can help you reload all the things of the activity.
