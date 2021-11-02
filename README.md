@@ -1,7 +1,11 @@
-# ReloadPreview
-Preview UI code by reloading ui object in Xamarin.iOS, Xamarin.Android,Xmarin.Mac, let you enjoy coding UI
+# What is ReloadPreview
+We know we can use xaml,xml,storyboard,swiftui to preview the ui, but if you want use C# code to write xamarin's ui, you can use this library to do it. 
+It not only preview, because it need run app, that mean you can see the result of data and service.
+
 
 # How it work
+It base on Reflection to reload the dll. 
+
 
 Use socket send class library's .dll to android or ios app,then app load the method in library to run,
 so if you use UIView as the parameter of the method, you can redraw UIView at the .dll.
