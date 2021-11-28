@@ -1,0 +1,22 @@
+﻿<UserControl x:Class="ReloadPreview.Extension.ReloadPreviewToolWindowControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:vsshell="clr-namespace:Microsoft.VisualStudio.Shell;assembly=Microsoft.VisualStudio.Shell.15.0" 
+             Background="{DynamicResource {x:Static vsshell:VsBrushes.WindowKey}}"
+             Foreground="{DynamicResource {x:Static vsshell:VsBrushes.WindowTextKey}}"
+             mc:Ignorable="d"
+             d:Height="50" d:Width="150"
+             Name="MyToolWindow">
+    <Grid Background="DarkGray">
+        <StackPanel Orientation="Vertical" Name="ContentView" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <TextBlock >Auto build?</TextBlock>
+                <CheckBox Width="20" Margin="10,0,0,0"  Name="sw" VerticalContentAlignment="Center"></CheckBox>
+            </StackPanel>
+            
+            <TextBlock  FontSize="12" HorizontalAlignment="Center">Must not Share Library!</TextBlock>
+        </StackPanel>
+    </Grid>
+</UserControl>
