@@ -18,8 +18,8 @@ It not only preview, because it need run app, that mean you can **show data and 
 
 Need other platform? override [`InvokeInMainThread`](https://github.com/xtuzy/ReloadPreview/blob/91de63909a1fb480e3a0f6ac7f6acf6f44bbe20d/ReloadPreview/ReloadClient.cs#L161) method.
 
-
 ## How it work
+
 It base on Reflection to reload the dll. 
 
 
@@ -122,6 +122,7 @@ public  class ReloadUIView:IReload
 
 ```
 ### Second
+
 From Release Download ReloadPreview.Server.ConsoleApp.zip Unzip , Run it on Windows.
 From Release Download and Install Extension, use it to auto build you project at background thread when you save code.
 If need choose y/n , all choose y. 
@@ -132,6 +133,7 @@ If need input dll path, copy the .dll path of the class library project generate
 Run app, let it install,then you don't need VisualStudio to run it,just need open it on Device or Emulater. Change class library code, At visual studio build it, app will change something.
 
 ## Tips
+
 - 2021.10.21
   
   I found when you close "Edit and Continue" at Visual Studio 2022, you can use "Apply Changes" of Visual Studio to continue simple debug Android, At Android, "Apply Changes" will kill current Activity, and reload the Activity in apk, it can't let app auto load the new dll, so ReloadPreview can help you reload all the things of the activity. Limit is you just can use old breakpoint.
