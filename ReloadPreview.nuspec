@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <!-- package -->
+    <id>ReloadPreview</id>
+    <title>ReloadPreview</title>
+    <version>1.2.0</version>
+    <description>
+ReloadPreview provide fast preview coding ui function in xamarin.android,xamarin.ios,xamarin.mac,and wpf, let you love design ui use code. It be realized by reload some method in reflect.
+    </description>
+    <summary>
+ReloadPreview provide preview coding ui function in xamarin.android,xamarin.ios,xamarin.mac,and wpf.
+    </summary>
+    <releaseNotes>
+Please visit https://github.com/xtuzy/ReloadPreview/releases to view the release notes.
+    </releaseNotes>
+    <projectUrl>https://github.com/xtuzy/ReloadPreview/releases</projectUrl>
+    <tags>reload,xamarin,android,ios,mac,ui</tags>
+
+    <!-- legal -->
+    <authors>zhouyang</authors>
+    <copyright>@zhouyang. All rights reserved.</copyright>
+
+    <dependencies>
+      <group targetFramework="MonoAndroid5.0">
+      </group>
+
+       <group targetFramework="Xamarin.iOS1.0">
+	<dependency id="Microsoft.CSharp" version="4.7.0" />
+      </group>
+
+      <group targetFramework="xamarinmac2.0">
+        <dependency id="Microsoft.CSharp" version="4.7.0" />
+      </group>
+
+      <group targetFramework="net5.0-windows" />
+    </dependencies>
+
+    <frameworkAssemblies>
+      <frameworkAssembly assemblyName="Java.Interop" targetFramework="MonoAndroid5.0" />
+      <frameworkAssembly assemblyName="Microsoft.CSharp" targetFramework="MonoAndroid5.0" />
+
+      <frameworkAssembly assemblyName="Xamarin.iOS" targetFramework="Xamarin.iOS1.0" />
+
+      <frameworkAssembly assemblyName="Xamarin.Mac" targetFramework="xamarinmac2.0" />
+    </frameworkAssemblies>
+
+    <frameworkReferences>
+      <group targetFramework="net5.0-windows">
+        <frameworkReference name="Microsoft.WindowsDesktop.App.WPF" />
+      </group>
+    </frameworkReferences>
+  </metadata>
+
+
+  <files>
+    <file src="D:\Work\ReloadPreview\ReloadPreview.Droid\bin\Debug\ReloadPreview.Droid.dll" target="lib\monoandroid50\ReloadPreview.Droid.dll" />
+    <file src="D:\Work\ReloadPreview\ReloadPreview.Droid\bin\Debug\ReloadPreview.Droid.pdb" target="lib\monoandroid50\ReloadPreview.Droid.pdb" />
+    <file src="D:\Work\ReloadPreview\ReloadPreview.Droid\bin\Debug\ReloadPreview.Droid.xml" target="lib\monoandroid50\ReloadPreview.Droid.xml" />
+
+     <file src="D:\Work\ReloadPreview\ReloadPreview.iOS\bin\Debug\ReloadPreview.iOS.dll" target="lib\xamarinios1.0\ReloadPreview.iOS.dll" />
+     <file src="D:\Work\ReloadPreview\ReloadPreview.iOS\bin\Debug\ReloadPreview.iOS.pdb" target="lib\xamarinios1.0\ReloadPreview.iOS.pdb" />
+     <file src="D:\Work\ReloadPreview\ReloadPreview.iOS\bin\Debug\ReloadPreview.iOS.xml" target="lib\xamarinios1.0\eloadPreview.iOS.xml" />
+    
+    <file src="D:\Work\ReloadPreview\ReloadPreview.Mac\bin\Debug\ReloadPreview.Mac.dll" target="lib\xamarinmac2.0\ReloadPreview.Mac.dll" />
+    <file src="D:\Work\ReloadPreview\ReloadPreview.Mac\bin\Debug\ReloadPreview.Mac.pdb" target="lib\xamarinmac2.0\ReloadPreview.Mac.pdb" />
+    <file src="D:\Work\ReloadPreview\ReloadPreview.Mac\bin\Debug\ReloadPreview.Mac.xml" target="lib\xamarinmac2.0\ReloadPreview.Mac.xml" />
+
+    <file src="D:\Work\ReloadPreview\ReloadPreview.Wpf\bin\Debug\net5.0-windows\ReloadPreview.Wpf.dll" target="lib\net5.0-windows\ReloadPreview.Wpf.dll" />
+    <file src="D:\Work\ReloadPreview\ReloadPreview.Wpf\bin\Debug\net5.0-windows\ReloadPreview.Wpf.pdb" target="lib\net5.0-windows\ReloadPreview.Wpf.pdb" />
+    <file src="D:\Work\ReloadPreview\ReloadPreview.Wpf\bin\Debug\net5.0-windows\ReloadPreview.Wpf.xml" target="lib\net5.0-windows\ReloadPreview.Wpf.xml" />
+    <!-- legal -->
+  </files>
+</package>
