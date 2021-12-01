@@ -5,6 +5,7 @@
     <UseWPF>true</UseWPF>
     <Configurations>Debug;Release;Deb</Configurations>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
+    <AssemblyName>ReloadPreview</AssemblyName>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

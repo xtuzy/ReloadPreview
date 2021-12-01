@@ -7,7 +7,7 @@
     <ProjectTypeGuids>{A3F8F2AB-B479-4A4A-A458-A89E7DC349F1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <RootNamespace>ReloadPreview.Mac</RootNamespace>
-    <AssemblyName>ReloadPreview.Mac</AssemblyName>
+    <AssemblyName>ReloadPreview</AssemblyName>
     <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <TargetFrameworkIdentifier>Xamarin.Mac</TargetFrameworkIdentifier>
     <MonoMacResourcePrefix>Resources</MonoMacResourcePrefix>
@@ -28,7 +28,7 @@
     <UseSGen>false</UseSGen>
     <HttpClientHandler>
     </HttpClientHandler>
-    <DocumentationFile>bin\Debug\ReloadPreview.Mac.xml</DocumentationFile>
+    <DocumentationFile>bin\Debug\ReloadPreview.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <Optimize>true</Optimize>
@@ -44,6 +44,7 @@
     <UseSGen>false</UseSGen>
     <HttpClientHandler>
     </HttpClientHandler>
+    <DocumentationFile>bin\Release\ReloadPreview.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />

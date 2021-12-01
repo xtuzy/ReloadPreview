@@ -183,7 +183,7 @@ namespace ReloadPreview
 #elif __IOS__
             Foundation.NSRunLoop.Main.BeginInvokeOnMainThread(action.Invoke);
 #else
-            //throw new NotImplementedException("");
+            action.Invoke();
 #endif
         }
 
