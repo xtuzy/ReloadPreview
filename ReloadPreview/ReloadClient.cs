@@ -43,7 +43,7 @@ namespace ReloadPreview
         /// <summary>
         /// Reload dll event,it will be loaded at MainThread
         /// </summary>
-        public event EventHandler Reload;
+        public event Action Reload;
 
         /// <summary>
         /// Creat client, Use it at App start
@@ -74,7 +74,7 @@ namespace ReloadPreview
                     InvokeInMainThread(() =>
                     {
                         if(Reload != null)
-                            Reload.Invoke(null, null);
+                            Reload.Invoke();
                     });
 
                 };
