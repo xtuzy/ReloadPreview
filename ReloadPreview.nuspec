@@ -4,7 +4,7 @@
     <!-- package -->
     <id>ReloadPreview</id>
     <title>ReloadPreview</title>
-    <version>2.0.0</version>
+    <version>2.1.1</version>
     <description>
 ReloadPreview provide fast preview coding ui function in xamarin.android,xamarin.ios,xamarin.mac,and wpf, let you love design ui use code. It be realized by reload some method in reflect.
     </description>

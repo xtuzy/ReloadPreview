@@ -27,6 +27,10 @@ namespace ReloadPreview
     /// </summary>
     public class ReloadClient
     {
+        /// <summary>
+        /// You can use this at all project to reload, not need recreate client in preview project.
+        /// </summary>
+        public static ReloadClient GlobalInstance;
         MessageClient MessageClientProgram;
         string IP;
         int Port;
