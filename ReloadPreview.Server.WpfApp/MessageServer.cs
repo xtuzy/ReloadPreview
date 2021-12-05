@@ -121,7 +121,7 @@ namespace ReloadPreview
             }
             catch (Exception ex)
             {
-                AnsiConsole.WriteException(ex);
+                //AnsiConsole.WriteException(ex);
                 return;
             }
             listener.BeginAccept(new AsyncCallback(OnConnectRequest), listener);
@@ -137,12 +137,12 @@ namespace ReloadPreview
                 return;
             CurrentClients.Add(sockClient);
             ConnectEvent?.Invoke(this,EventArgs.Empty);
-            AnsiConsole.MarkupLine("[yellow]Connect from client {0}, joined [/]", sockClient.RemoteEndPoint);
+            //AnsiConsole.MarkupLine("[yellow]Connect from client {0}, joined [/]", sockClient.RemoteEndPoint);
         }
 
         public void SendFile(string filePath)
         {
-            AnsiConsole.MarkupLine("[yellow]Start read dll at {0} [/]", DateTime.Now);
+            //AnsiConsole.MarkupLine("[yellow]Start read dll at {0} [/]", DateTime.Now);
             byte[] m_byBuff = new byte[1024 * 1024];
             byte[] bytes;
 
@@ -164,17 +164,17 @@ namespace ReloadPreview
                     var okBytesLength = sock.Receive(m_byBuff, m_byBuff.Length, SocketFlags.None);//接收数据长度
                     if (Encoding.ASCII.GetString(m_byBuff, 0, okBytesLength) == "OK")
                     {
-                        AnsiConsole.MarkupLine("[yellow]Start send dll {0} byte to {1} at {2} [/]", bytes.Length, sock.RemoteEndPoint, DateTime.Now);
+                        //AnsiConsole.MarkupLine("[yellow]Start send dll {0} byte to {1} at {2} [/]", bytes.Length, sock.RemoteEndPoint, DateTime.Now);
                         sock.Send(bytes);
-                        AnsiConsole.MarkupLine("[yellow]Finish send dll to {0} at {1} [/]", sock.RemoteEndPoint, DateTime.Now);
+                        //AnsiConsole.MarkupLine("[yellow]Finish send dll to {0} at {1} [/]", sock.RemoteEndPoint, DateTime.Now);
                     }
                 }
                 catch(Exception ex)
                 {
                     // If the send fails the close the connection
-                    AnsiConsole.WriteException(ex);
+                    //AnsiConsole.WriteException(ex);
                         
-                    AnsiConsole.MarkupLine("[yellow]Fail send dll to client {0} , will remove it [/]", sock.RemoteEndPoint);
+                    //AnsiConsole.MarkupLine("[yellow]Fail send dll to client {0} , will remove it [/]", sock.RemoteEndPoint);
                     sock.Close();
                     removeClient.Add(sock);
                 }

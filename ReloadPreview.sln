@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReloadPreview.Extension", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReloadPreview.Standard", "ReloadPreview.Standard\ReloadPreview.Standard.csproj", "{DA4E61A8-AEF4-4608-823D-018C3C1043B8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReloadPreview.Server.WpfApp", "ReloadPreview.Server.WpfApp\ReloadPreview.Server.WpfApp.csproj", "{CA7FD737-14EC-4643-A332-CB1EF7336A94}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		ReloadPreview\ReloadPreview.projitems*{128ae3ac-7283-494a-97a3-893f3d3a68d7}*SharedItemsImports = 5
@@ -256,6 +258,36 @@ Global
 		{DA4E61A8-AEF4-4608-823D-018C3C1043B8}.Release|x64.Build.0 = Release|Any CPU
 		{DA4E61A8-AEF4-4608-823D-018C3C1043B8}.Release|x86.ActiveCfg = Release|Any CPU
 		{DA4E61A8-AEF4-4608-823D-018C3C1043B8}.Release|x86.Build.0 = Release|Any CPU
+		{CA7FD737-14EC-4643-A332-CB1EF7336A94}.Deb|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA7FD737-14EC-4643-A332-CB1EF7336A94}.Deb|Any CPU.Build.0 = Debug|Any CPU
+		{CA7FD737-14EC-4643-A332-CB1EF7336A94}.Deb|ARM.ActiveCfg = Debug|Any CPU
+		{CA7FD737-14EC-4643-A332-CB1EF7336A94}.Deb|ARM.Build.0 = Debug|Any CPU
+		{CA7FD737-14EC-4643-A332-CB1EF7336A94}.Deb|ARM64.ActiveCfg = Debug|Any CPU
+		{CA7FD737-14EC-4643-A332-CB1EF7336A94}.Deb|ARM64.Build.0 = Debug|Any CPU
+		{CA7FD737-14EC-4643-A332-CB1EF7336A94}.Deb|x64.ActiveCfg = Debug|Any CPU
+		{CA7FD737-14EC-4643-A332-CB1EF7336A94}.Deb|x64.Build.0 = Debug|Any CPU
+		{CA7FD737-14EC-4643-A332-CB1EF7336A94}.Deb|x86.ActiveCfg = Debug|Any CPU
+		{CA7FD737-14EC-4643-A332-CB1EF7336A94}.Deb|x86.Build.0 = Debug|Any CPU
+		{CA7FD737-14EC-4643-A332-CB1EF7336A94}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA7FD737-14EC-4643-A332-CB1EF7336A94}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA7FD737-14EC-4643-A332-CB1EF7336A94}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{CA7FD737-14EC-4643-A332-CB1EF7336A94}.Debug|ARM.Build.0 = Debug|Any CPU
+		{CA7FD737-14EC-4643-A332-CB1EF7336A94}.Debug|ARM64.ActiveCfg = Debug|Any CPU
+		{CA7FD737-14EC-4643-A332-CB1EF7336A94}.Debug|ARM64.Build.0 = Debug|Any CPU
+		{CA7FD737-14EC-4643-A332-CB1EF7336A94}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{CA7FD737-14EC-4643-A332-CB1EF7336A94}.Debug|x64.Build.0 = Debug|Any CPU
+		{CA7FD737-14EC-4643-A332-CB1EF7336A94}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{CA7FD737-14EC-4643-A332-CB1EF7336A94}.Debug|x86.Build.0 = Debug|Any CPU
+		{CA7FD737-14EC-4643-A332-CB1EF7336A94}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA7FD737-14EC-4643-A332-CB1EF7336A94}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CA7FD737-14EC-4643-A332-CB1EF7336A94}.Release|ARM.ActiveCfg = Release|Any CPU
+		{CA7FD737-14EC-4643-A332-CB1EF7336A94}.Release|ARM.Build.0 = Release|Any CPU
+		{CA7FD737-14EC-4643-A332-CB1EF7336A94}.Release|ARM64.ActiveCfg = Release|Any CPU
+		{CA7FD737-14EC-4643-A332-CB1EF7336A94}.Release|ARM64.Build.0 = Release|Any CPU
+		{CA7FD737-14EC-4643-A332-CB1EF7336A94}.Release|x64.ActiveCfg = Release|Any CPU
+		{CA7FD737-14EC-4643-A332-CB1EF7336A94}.Release|x64.Build.0 = Release|Any CPU
+		{CA7FD737-14EC-4643-A332-CB1EF7336A94}.Release|x86.ActiveCfg = Release|Any CPU
+		{CA7FD737-14EC-4643-A332-CB1EF7336A94}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
