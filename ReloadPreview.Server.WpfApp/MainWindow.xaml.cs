@@ -66,7 +66,7 @@ namespace ReloadPreview.Server.WpfApp
                 try
                 {
                     //打开Socket
-                    var Server = MessageServer.CreatMessageServer(int.Parse(port));
+                    var Server = new MessageServer(int.Parse(port));
                     if (Server != null)
                     {
                         this.Title = Server.MyIp.ToString();
@@ -147,7 +147,7 @@ namespace ReloadPreview.Server.WpfApp
                     {
                         try
                         {
-                            await Task.Delay(300);
+                            await Task.Delay(150);
                             //send dll to app
                             if (ServerList.ContainsKey(path))
                             {

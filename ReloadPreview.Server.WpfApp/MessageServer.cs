@@ -20,7 +20,7 @@ namespace ReloadPreview
         public List<Socket> CurrentClients = new List<Socket>();// 代理端的Socket
 
         //静态处理实例,因为一个ip貌似只能一个服务?
-        private static MessageServer App;
+        //private MessageServer @this;
         private Socket sockListener;//服务端的Socket
 
         public IPAddress MyIp = null;
@@ -30,19 +30,16 @@ namespace ReloadPreview
         /// <summary>
         /// 创建
         /// </summary>
-        public static MessageServer CreatMessageServer(int port)
+        public MessageServer(int port)
         {
-            if (App != null)
-                return App;
 
-            App = new MessageServer();
             // Welcome and Start listening
             //Console.WriteLine("*** Server Started {0} ***", DateTime.Now.ToString("G"));
 
 
             //const int nPortListen = 399;
             int nPortListen = port;
-            App.Port = port;
+            this.Port = port;
 
             // Determine the IPAddress of this machine
             IPAddress[] aryLocalAddr = null;
@@ -65,12 +62,12 @@ namespace ReloadPreview
             if (aryLocalAddr == null || aryLocalAddr.Length < 1)
             {
                 AnsiConsole.MarkupLine("[red]Unable to get local address[/]");
-                return null;
+                return;
             }
 
             // Create the sockListener socket in this machines IP address
 
-            App.sockListener = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+            this.sockListener = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
             //sockListener.Bind( new IPEndPoint( aryLocalAddr[0], nPortListen ) );//这里报错,说地址和 AddressFamily.InterNetwork不符合
             //sockListener.Bind( new IPEndPoint( IPAddress.Loopback, nPortListen ) );	// For use with localhost 127.0.0.1
 
@@ -80,16 +77,16 @@ namespace ReloadPreview
             {
                 if (ip.AddressFamily == AddressFamily.InterNetwork)
                 {
-                    App.MyIp = ip;
+                    this.MyIp = ip;
                     try
                     {
-                        App.sockListener.Bind(new IPEndPoint(ip, nPortListen));
+                        this.sockListener.Bind(new IPEndPoint(ip, nPortListen));
                         //Console.WriteLine("Listening on : [{0}] {1}:{2}", strHostName, ip, nPortListen);
-                        App.sockListener.Listen(10);
+                        this.sockListener.Listen(10);
 
                         // Setup a callback to be notified of connection requests
-                        App.sockListener.BeginAccept(new AsyncCallback(App.OnConnectRequest), App.sockListener);
-                        return App;
+                        this.sockListener.BeginAccept(new AsyncCallback(this.OnConnectRequest), this.sockListener);
+                        return ;
 
                     }
                     catch (Exception ex)
@@ -105,7 +102,7 @@ namespace ReloadPreview
                 }
             }
 
-            return null;
+            return ;
         }
 
         /// <summary>
