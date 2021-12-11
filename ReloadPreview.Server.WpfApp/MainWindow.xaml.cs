@@ -145,22 +145,28 @@ namespace ReloadPreview.Server.WpfApp
                     isSingleChange = true;
                     Task.Run(async () =>
                     {
+                        TryAgain:
                         try
                         {
-                            await Task.Delay(150);
+                            Debug.WriteLine($"File Changed {DateTime.Now}");
+                            await Task.Delay(100);
                             //send dll to app
                             if (ServerList.ContainsKey(path))
                             {
                                 ServerList[path].Item1?.SendFile(dllPath);
                             }
+                            await Task.Delay(2000);
                         }
                         catch (Exception ex)
                         {
-                            Debug.WriteLine("Send File Exception");
+                            //如果读取文件失败,可能是文件被占用
+                            Debug.WriteLine("Send File Error.");
+                            //延迟500毫秒再读取
+                            await Task.Delay(500);
+                            goto TryAgain;
                         }
                         finally
                         {
-                            await Task.Delay(5000);
                             isSingleChange = false;
                         }
                     });

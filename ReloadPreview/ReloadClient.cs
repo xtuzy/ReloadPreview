@@ -97,6 +97,7 @@ namespace ReloadPreview
         /// <param name="view">object need deal with</param>
         public void ReloadType<T>(object controller, object view) where T : IReload
         {
+            if (memoryStream == null) return;
             var classFullName = typeof(T).FullName;
             Console.WriteLine("Will reload class {0}.", classFullName);
             Assembly assembly = null;
