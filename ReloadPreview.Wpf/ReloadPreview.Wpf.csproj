@@ -22,4 +22,10 @@
 
   <Import Project="..\ReloadPreview\ReloadPreview.projitems" Label="Shared" />
 
+  
+
+  <ItemGroup>
+    <PackageReference Include="System.Text.Json" Version="6.0.0" />
+  </ItemGroup>
+
 </Project>

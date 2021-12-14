@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
+using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -256,6 +257,70 @@ namespace ReloadPreview
         }
     }
 #endif
+
+    /// <summary>
+    /// Reload中需要对存储ViewModel做序列化保存才能持续使用,这个类做此用.
+    /// </summary>
+    internal static class ReloadViewModelService
+    {
+        /// <summary>
+        /// Reload dll 时会导致类不相等,无法直接使用as转换,因此通过序列化反序列化转换和存储.
+        /// 没有已存储的数据时返回null.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="viewModelKey"></param>
+        /// <returns></returns>
+        public static T ReloadViewModel<T>(string viewModelKey = null) where T : class
+        {
+            if (viewModelKey == null)
+                viewModelKey = typeof(T).Name;
+            ///如果包含,则存储了,反序列化获取
+            if (ReloadPreview.ReloadClient.GlobalInstance.ViewModels.ContainsKey(viewModelKey))
+            {
+                var viewmodel = ReloadPreview.ReloadClient.GlobalInstance.ViewModels[viewModelKey] as string;
+                return JsonSerializer.Deserialize<T>(viewmodel);
+            }
+            else//如果不包含,返回null
+            { return default; }
+        }
+
+        /// <summary>
+        /// 保存一次ViewModel,保存后可以持续在Reload中使用该ViewModel保存的数据.
+        /// 默认存储ViewModel的键值为类型名,如果需要存储同类型的ViewModel多个,请设置不同键值.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="viewModelKey"></param>
+        /// <param name="viewModel"></param>
+        public static void SaveViewModel<T>(T viewModel, string viewModelKey = null) where T : class
+        {
+            if (viewModelKey == null)
+                viewModelKey = typeof(T).Name;
+            var str = JsonSerializer.Serialize<T>(viewModel);
+            if (ReloadPreview.ReloadClient.GlobalInstance.ViewModels.ContainsKey(viewModelKey))
+            {
+                ReloadPreview.ReloadClient.GlobalInstance.ViewModels[viewModelKey] = str;
+            }
+            else
+            {
+                ReloadPreview.ReloadClient.GlobalInstance.ViewModels.Add(viewModelKey, str);
+            }
+        }
+
+        /// <summary>
+        /// 删除存储的ViewModel.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="viewModelKey"></param>
+        public static void DeleteViewModel<T>(string viewModelKey = null) where T : class
+        {
+            if (viewModelKey == null)
+                viewModelKey = typeof(T).Name;
+            if (ReloadPreview.ReloadClient.GlobalInstance.ViewModels.ContainsKey(viewModelKey))
+            {
+                ReloadPreview.ReloadClient.GlobalInstance.ViewModels.Remove(viewModelKey);
+            }
+        }
+    }
 }
 
 

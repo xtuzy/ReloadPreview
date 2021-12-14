@@ -61,6 +61,11 @@
   <ItemGroup>
     <Folder Include="Resources\drawable\" />
   </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="System.Text.Json">
+      <Version>6.0.0</Version>
+    </PackageReference>
+  </ItemGroup>
   <Import Project="..\ReloadPreview\ReloadPreview.projitems" Label="Shared" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
