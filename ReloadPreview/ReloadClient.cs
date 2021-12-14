@@ -261,7 +261,7 @@ namespace ReloadPreview
     /// <summary>
     /// Reload中需要对存储ViewModel做序列化保存才能持续使用,这个类做此用.
     /// </summary>
-    internal static class ReloadViewModelService
+    public static class ReloadViewModelService
     {
         /// <summary>
         /// Reload dll 时会导致类不相等,无法直接使用as转换,因此通过序列化反序列化转换和存储.
