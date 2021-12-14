@@ -1,5 +1,6 @@
 ﻿#if ! __CONSOLE__
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using System.Threading;
@@ -31,6 +32,13 @@ namespace ReloadPreview
         /// You can use this at all project to reload, not need recreate client in preview project.
         /// </summary>
         public static ReloadClient GlobalInstance;
+
+        /// <summary>
+        /// 替代Ioc来暂时存储ViewModel,以在Reload时保存页面状态.
+        /// </summary>
+
+        public Dictionary<string, object> ViewModels = new Dictionary<string, object>();
+
         MessageClient MessageClientProgram;
         string IP;
         int Port;
