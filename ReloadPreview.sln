@@ -19,7 +19,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReloadPreview.Extension", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReloadPreview.Standard", "ReloadPreview.Standard\ReloadPreview.Standard.csproj", "{DA4E61A8-AEF4-4608-823D-018C3C1043B8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReloadPreview.Server.WpfApp", "ReloadPreview.Server.WpfApp\ReloadPreview.Server.WpfApp.csproj", "{CA7FD737-14EC-4643-A332-CB1EF7336A94}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReloadPreview.Server.WpfApp", "ReloadPreview.Server.WpfApp\ReloadPreview.Server.WpfApp.csproj", "{CA7FD737-14EC-4643-A332-CB1EF7336A94}"
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution

@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 #elif WINDOWS_UWP
 
 #elif __MACOS__
-                
+
 #elif __ANDROID__
 using Android.OS;
 #elif __IOS__
@@ -39,6 +39,10 @@ namespace ReloadPreview
         /// </summary>
 
         public Dictionary<string, object> ViewModels = new Dictionary<string, object>();
+        /// <summary>
+        /// 存储类型,以在Reload项目中使用
+        /// </summary>
+        public Dictionary<string, Type> ViewControllers = new Dictionary<string, Type>();
 
         MessageClient MessageClientProgram;
         string IP;
@@ -82,7 +86,7 @@ namespace ReloadPreview
                     memoryStream = stream;
                     InvokeInMainThread(() =>
                     {
-                        if(Reload != null)
+                        if (Reload != null)
                             Reload.Invoke();
                     });
 
@@ -112,7 +116,7 @@ namespace ReloadPreview
             Assembly assembly = null;
             try
             {
-                    assembly = Assembly.Load(memoryStream.ToArray());
+                assembly = Assembly.Load(memoryStream.ToArray());
             }
             catch (Exception ex)
             {
@@ -160,7 +164,7 @@ namespace ReloadPreview
 #elif WINDOWS_UWP
 
 #elif __MACOS__
-                
+
 #elif __ANDROID__
         static volatile Handler handler;
 #elif __IOS__
@@ -186,10 +190,10 @@ namespace ReloadPreview
                 throw new InvalidOperationException("Unable to find main thread.");
             dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () => action()).AsTask().WatchForError();
 #elif __MACOS__
-                AppKit.NSApplication.SharedApplication.InvokeOnMainThread(() =>
-                {
-                    action.Invoke();
-                });
+            AppKit.NSApplication.SharedApplication.InvokeOnMainThread(() =>
+            {
+                action.Invoke();
+            });
 #elif __ANDROID__
             if (handler?.Looper != Android.OS.Looper.MainLooper)
              handler = new Handler(Looper.MainLooper);
@@ -318,6 +322,39 @@ namespace ReloadPreview
             if (ReloadPreview.ReloadClient.GlobalInstance.ViewModels.ContainsKey(viewModelKey))
             {
                 ReloadPreview.ReloadClient.GlobalInstance.ViewModels.Remove(viewModelKey);
+            }
+        }
+    }
+
+    public static class ViewControllerService
+    {
+        /// <summary>
+        /// 记录已经创建了这种类型,之后可以在其他项目中使用
+        /// </summary>
+        /// <param name="ViewControllerName"></param>
+        /// <param name="ViewControllerType"></param>
+        public static void RecordViewController(string ViewControllerName, Type ViewControllerType)
+        {
+            if (ReloadPreview.ReloadClient.GlobalInstance.ViewControllers.ContainsKey(ViewControllerName)) return;
+            ReloadPreview.ReloadClient.GlobalInstance.ViewControllers.Add(ViewControllerName, ViewControllerType);
+        }
+
+        /// <summary>
+        /// 新建该类型的对象
+        /// </summary>
+        /// <param name="ViewControllerName"></param>
+        /// <returns></returns>
+        public static object NewViewController(string ViewControllerName)
+        {
+            if (!ReloadPreview.ReloadClient.GlobalInstance.ViewControllers.ContainsKey(ViewControllerName)) return null;
+            try
+            {
+                dynamic dynamic_ec = Activator.CreateInstance(ReloadPreview.ReloadClient.GlobalInstance.ViewControllers[ViewControllerName]);
+                return dynamic_ec as object;
+            }
+            catch (Exception)
+            {
+                throw;
             }
         }
     }
