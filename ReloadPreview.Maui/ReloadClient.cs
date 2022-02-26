@@ -1,22 +1,8 @@
-﻿#if ! __CONSOLE__
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Reflection;
+﻿using System.Reflection;
 using System.Text.Json;
-using System.Threading;
-using System.Threading.Tasks;
 
-#if __WPF__
-               
-#elif WINDOWS_UWP
-
-#elif __MACOS__
-
-#elif __ANDROID__
+#if ANDROID
 using Android.OS;
-#elif __IOS__
-#else
 #endif
 namespace ReloadPreview
 {
@@ -24,25 +10,25 @@ namespace ReloadPreview
     /// Reload dll's client.<br/>
     /// Notice:<br/>
     /// 1.Android app need set internet permission at manifest.xml <br/>
-    /// 2.If not xamarin.android,ios,mac,wpf,uwp, you should load ReloadType in ui thread in Reload event, <br/>
-    /// because normally set ui element need ui thread, you also can extend this class, realize it in InvokeInMainThread method.
+    /// 2.If not net6.0-ios,net6.0-android,net6.0-windows, Reload event invoked not in UI thread, <br/>
+    /// you need invoke UI thread by youself, or you can extend this class, rewrite it in InvokeInMainThread method.
     /// </summary>
-    public class ReloadClient
+    public class HotReload
     {
         /// <summary>
         /// You can use this at all project to reload, not need recreate client in preview project.
         /// </summary>
-        public static ReloadClient GlobalInstance;
+        public static HotReload Instance = new HotReload();
 
         /// <summary>
         /// 替代Ioc来暂时存储ViewModel,以在Reload时保存页面状态.
         /// </summary>
 
-        public Dictionary<string, object> ViewModels = new Dictionary<string, object>();
+        public Dictionary<string, object> Datas = new Dictionary<string, object>();
         /// <summary>
         /// 存储类型,以在Reload项目中使用
         /// </summary>
-        public Dictionary<string, Type> ViewControllers = new Dictionary<string, Type>();
+        public Dictionary<string, Type> Types = new Dictionary<string, Type>();
 
         MessageClient MessageClientProgram;
         string IP;
@@ -54,28 +40,26 @@ namespace ReloadPreview
         MemoryStream memoryStream = null;
 
         /// <summary>
-        /// Reload dll event,it will be loaded at MainThread
+        /// Reload dll event,it will be loaded at UI Thread when target is net6.0-ios,net6.0-android,net6.0-windows,
+        /// if others, it will be loaded at other thread, so if you want update ui, you need Invoke UI Thread.
         /// </summary>
         public event Action Reload;
 
-        /// <summary>
-        /// Creat client, Use it at App start
-        /// </summary>
-        /// <param name="ip">server ip</param>
-        /// <param name="port">server port</param>
-        public ReloadClient(string ip, int port)
+        private HotReload()
         {
-            IP = ip;
-            Port = port;
         }
 
         /// <summary>
-        /// Use at App start<br/>
-        /// start client,start accept dll from server.
+        /// Start client,start accept dll from server for reload.
         /// </summary>
-        public void Start()
+        /// <param name="ip">server ip</param>
+        /// <param name="port">server port</param>
+        public void Init(string ip, int port=500)
         {
-            var ClientTask = new Task(() =>
+            IP = ip;
+            Port = port;
+
+            Task.Run(() =>
             {
                 Console.WriteLine("Creat Client.");
                 MessageClientProgram = new MessageClient(IP, Port);
@@ -89,30 +73,15 @@ namespace ReloadPreview
                         if (Reload != null)
                             Reload.Invoke();
                     });
-
                 };
-
-            });
-            //Delay 500ms, Avoid start slowly?
-            Task.Run(async () =>
-            {
-                await Task.Delay(500);
-                InvokeInMainThread(() => ClientTask.Start());
             });
         }
 
-        /// <summary>
-        /// Reload Type that extend IReload.<br/>
-        /// You should load this method in event, you also should load this method in Controller's init, <br/>
-        /// that will let you can load new assemble when navigate to different Controller.
-        /// </summary>
-        /// <param name="controller">object need deal with</param>
-        /// <param name="view">object need deal with</param>
-        public void ReloadType<T>(object controller, object view) where T : IReload
+        public object ReloadClass<T>(object arg1=null,object arg2=null,object arg3=null)
         {
-            if (memoryStream == null) return;
+            if (memoryStream == null) return null;
             var classFullName = typeof(T).FullName;
-            Console.WriteLine("Will reload class {0}.", classFullName);
+            Console.WriteLine("Will Reload Class {0}.", classFullName);
             Assembly assembly = null;
             try
             {
@@ -120,8 +89,8 @@ namespace ReloadPreview
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error when load dll:{0}", ex);
-                return;
+                Console.WriteLine("Error When Load Dll:{0}", ex);
+                return null;
             }
 
             //get class by reflect 
@@ -133,15 +102,21 @@ namespace ReloadPreview
 
                     if (type != null)
                     {
-                        dynamic dynamic_ec = Activator.CreateInstance(type);//creat object
-                        dynamic_ec.Reload(controller, view);//load method
+                        if(arg3!=null)
+                            return Activator.CreateInstance(type,new object[] {arg1,arg2,arg3});//creat object
+                        if (arg2 != null)
+                            return Activator.CreateInstance(type, new object[] { arg1, arg2});//creat object
+                        if (arg1 != null)
+                            return Activator.CreateInstance(type, new object[] { arg1});//creat object
+                        return Activator.CreateInstance(type);//creat object
                     }
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine("Error when GetType from assembly:{0}", ex.Message);
+                    Console.WriteLine("Error When GetType From Assembly:{0}", ex.Message);
                 }
             }
+            return null;
         }
 
         /// <summary>
@@ -155,20 +130,8 @@ namespace ReloadPreview
             }
         }
 
-
-
-
-
-#if __WPF__
-               
-#elif WINDOWS_UWP
-
-#elif __MACOS__
-
-#elif __ANDROID__
+#if  ANDROID
         static volatile Handler handler;
-#elif __IOS__
-#else
 #endif
 
         /// <summary>
@@ -178,27 +141,33 @@ namespace ReloadPreview
         /// <param name="action"></param>
         public virtual void InvokeInMainThread(Action action)
         {
-#if __WPF__
-                System.Windows.Application.Current.Dispatcher.Invoke(() =>
-                {
-                    action.Invoke();
-                });
-#elif WINDOWS_UWP
+#if WINDOWS
             var dispatcher = Windows.ApplicationModel.Core.CoreApplication.MainView?.CoreWindow?.Dispatcher;
 
             if (dispatcher == null)
                 throw new InvalidOperationException("Unable to find main thread.");
             dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () => action()).AsTask().WatchForError();
-#elif __MACOS__
+            // #if WPF
+            //                System.Windows.Application.Current.Dispatcher.Invoke(() =>
+            //                {
+            //                    action.Invoke();
+            //                });
+            // #elif WINDOWS_UWP
+            //            var dispatcher = Windows.ApplicationModel.Core.CoreApplication.MainView?.CoreWindow?.Dispatcher;
+
+            //            if (dispatcher == null)
+            //                throw new InvalidOperationException("Unable to find main thread.");
+            //            dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () => action()).AsTask().WatchForError();
+#elif MACOS
             AppKit.NSApplication.SharedApplication.InvokeOnMainThread(() =>
             {
                 action.Invoke();
             });
-#elif __ANDROID__
+#elif ANDROID
             if (handler?.Looper != Android.OS.Looper.MainLooper)
              handler = new Handler(Looper.MainLooper);
             handler.Post(action);
-#elif __IOS__
+#elif IOS
             Foundation.NSRunLoop.Main.BeginInvokeOnMainThread(action.Invoke);
 #else
             action.Invoke();
@@ -210,7 +179,7 @@ namespace ReloadPreview
     /// <summary>
     /// Reload class in class library that must extend this.
     /// </summary>
-    public interface IReload
+    /*public interface IReload
     {
         /// <summary>
         /// When dll reload,will reload this method, you can deal with view in this.<br/>
@@ -228,10 +197,10 @@ namespace ReloadPreview
         /// </summary>
         /// <param name="controller">maybe activity, fragment, uiviewcontroller, or anything, just need you know what it is</param>
         /// <param name="view">maybe view,viewgroup, uiview, or anything, just need you know what it is</param>
-        void Reload(object controller, object view);
-    }
+        object Reload(object controller, object view);
+    }*/
 
-#if WINDOWS_UWP
+#if WINDOWS
     /// <summary>
     /// https://github.com/xamarin/Essentials/blob/8657192a8963877e389a533b8feb324af6f89c8b/Xamarin.Essentials/MainThread/MainThreadExtensions.uwp.cs
     /// </summary>
@@ -265,23 +234,23 @@ namespace ReloadPreview
     /// <summary>
     /// Reload中需要对存储ViewModel做序列化保存才能持续使用,这个类做此用.
     /// </summary>
-    public static class ReloadViewModelService
+    public static class ReloadData
     {
         /// <summary>
         /// Reload dll 时会导致类不相等,无法直接使用as转换,因此通过序列化反序列化转换和存储.
         /// 没有已存储的数据时返回null.
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="viewModelKey"></param>
+        /// <param name="dataKey"></param>
         /// <returns></returns>
-        public static T ReloadViewModel<T>(string viewModelKey = null) where T : class
+        public static T Reload<T>(string dataKey = null) where T : class
         {
-            if (viewModelKey == null)
-                viewModelKey = typeof(T).Name;
+            if (dataKey == null)
+                dataKey = typeof(T).Name;
             ///如果包含,则存储了,反序列化获取
-            if (ReloadPreview.ReloadClient.GlobalInstance.ViewModels.ContainsKey(viewModelKey))
+            if (ReloadPreview.HotReload.Instance.Datas.ContainsKey(dataKey))
             {
-                var viewmodel = ReloadPreview.ReloadClient.GlobalInstance.ViewModels[viewModelKey] as string;
+                var viewmodel = ReloadPreview.HotReload.Instance.Datas[dataKey] as string;
                 return JsonSerializer.Deserialize<T>(viewmodel);
             }
             else//如果不包含,返回null
@@ -289,67 +258,67 @@ namespace ReloadPreview
         }
 
         /// <summary>
-        /// 保存一次ViewModel,保存后可以持续在Reload中使用该ViewModel保存的数据.
-        /// 默认存储ViewModel的键值为类型名,如果需要存储同类型的ViewModel多个,请设置不同键值.
+        /// 保存一次data,保存后可以持续在Reload中使用该data保存的数据.
+        /// 默认存储data的键值为类型名,如果需要存储同类型的data多个,请设置不同键值.
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="viewModelKey"></param>
-        /// <param name="viewModel"></param>
-        public static void SaveViewModel<T>(T viewModel, string viewModelKey = null) where T : class
+        /// <param name="dataKey"></param>
+        /// <param name="data"></param>
+        public static void Save<T>(T data, string dataKey = null) where T : class
         {
-            if (viewModelKey == null)
-                viewModelKey = typeof(T).Name;
-            var str = JsonSerializer.Serialize<T>(viewModel);
-            if (ReloadPreview.ReloadClient.GlobalInstance.ViewModels.ContainsKey(viewModelKey))
+            if (dataKey == null)
+                dataKey = typeof(T).Name;
+            var str = JsonSerializer.Serialize<T>(data);
+            if (ReloadPreview.HotReload.Instance.Datas.ContainsKey(dataKey))
             {
-                ReloadPreview.ReloadClient.GlobalInstance.ViewModels[viewModelKey] = str;
+                ReloadPreview.HotReload.Instance.Datas[dataKey] = str;
             }
             else
             {
-                ReloadPreview.ReloadClient.GlobalInstance.ViewModels.Add(viewModelKey, str);
+                ReloadPreview.HotReload.Instance.Datas.Add(dataKey, str);
             }
         }
 
         /// <summary>
-        /// 删除存储的ViewModel.
+        /// 删除存储的data.
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="viewModelKey"></param>
-        public static void DeleteViewModel<T>(string viewModelKey = null) where T : class
+        /// <param name="datalKey"></param>
+        public static void Delete<T>(string datalKey = null) where T : class
         {
-            if (viewModelKey == null)
-                viewModelKey = typeof(T).Name;
-            if (ReloadPreview.ReloadClient.GlobalInstance.ViewModels.ContainsKey(viewModelKey))
+            if (datalKey == null)
+                datalKey = typeof(T).Name;
+            if (ReloadPreview.HotReload.Instance.Datas.ContainsKey(datalKey))
             {
-                ReloadPreview.ReloadClient.GlobalInstance.ViewModels.Remove(viewModelKey);
+                ReloadPreview.HotReload.Instance.Datas.Remove(datalKey);
             }
         }
     }
 
-    public static class ViewControllerService
+    public static class ReloadType
     {
         /// <summary>
         /// 记录已经创建了这种类型,之后可以在其他项目中使用
         /// </summary>
-        /// <param name="ViewControllerName"></param>
-        /// <param name="ViewControllerType"></param>
-        public static void RecordViewController(string ViewControllerName, Type ViewControllerType)
+        /// <param name="TypeName"></param>
+        /// <param name="theType"></param>
+        public static void Record(string TypeName, Type theType)
         {
-            if (ReloadPreview.ReloadClient.GlobalInstance.ViewControllers.ContainsKey(ViewControllerName)) return;
-            ReloadPreview.ReloadClient.GlobalInstance.ViewControllers.Add(ViewControllerName, ViewControllerType);
+            if (ReloadPreview.HotReload.Instance.Types.ContainsKey(TypeName)) return;
+            ReloadPreview.HotReload.Instance.Types.Add(TypeName, theType);
         }
 
         /// <summary>
         /// 新建该类型的对象
         /// </summary>
-        /// <param name="ViewControllerName"></param>
+        /// <param name="TypeName"></param>
         /// <returns></returns>
-        public static object NewViewController(string ViewControllerName)
+        public static object NewInstance(string TypeName)
         {
-            if (!ReloadPreview.ReloadClient.GlobalInstance.ViewControllers.ContainsKey(ViewControllerName)) return null;
+            if (!ReloadPreview.HotReload.Instance.Types.ContainsKey(TypeName)) return null;
             try
             {
-                dynamic dynamic_ec = Activator.CreateInstance(ReloadPreview.ReloadClient.GlobalInstance.ViewControllers[ViewControllerName]);
+                dynamic dynamic_ec = Activator.CreateInstance(ReloadPreview.HotReload.Instance.Types[TypeName]);
                 return dynamic_ec as object;
             }
             catch (Exception)
@@ -359,7 +328,3 @@ namespace ReloadPreview
         }
     }
 }
-
-
-
-#endif
