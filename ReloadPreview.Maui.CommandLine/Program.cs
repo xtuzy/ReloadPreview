@@ -161,12 +161,12 @@ namespace ReloadPreview.Maui.CommandLine
                 }
                 else if (Target.Contains("-android"))
                 {
-                    StartMSBuild(CsprojRootFolder, $"dotnet msbuild {CsprojFileFullPath} /t:Build /p:Platform=\"AnyCPU\" /p:Configuration={Configuration} /p:TargetFramework={Target} /p:AndroidBuildApplicationPackage=false /p:EmbedAssembliesIntoApk=false");
+                    StartMSBuild(CsprojRootFolder, $"msbuild {CsprojFileFullPath} /t:Build /p:Platform=\"AnyCPU\" /p:Configuration={Configuration} /p:TargetFramework={Target} /p:AndroidBuildApplicationPackage=false /p:EmbedAssembliesIntoApk=false");
                     tempOutputFolder = Path.Combine(CsprojRootFolder, @$"bin\{Configuration}\{Target}");
                 }
                 else if (Target.Contains("-ios") || Target.Contains("-maccatalyst"))
                 {
-                    StartMSBuild(CsprojRootFolder, $"dotnet msbuild {CsprojFileFullPath} /t:Build /p:Platform=\"AnyCPU\" /p:Configuration={Configuration} /p:TargetFramework={Target} ");
+                    StartMSBuild(CsprojRootFolder, $"msbuild {CsprojFileFullPath} /t:Build /p:Platform=\"AnyCPU\" /p:Configuration={Configuration} /p:TargetFramework={Target} ");
                     //StartMSBuild(CsprojRootFolder, $"cmd /k \"C:\\Program Files\\Microsoft Visual Studio\\2022\\Preview\\Common7\\Tools\\VsDevCmd.bat\"");
                     tempOutputFolder = Path.Combine(CsprojRootFolder, @$"bin\{Configuration}\{Target}");
                 }
@@ -177,14 +177,14 @@ namespace ReloadPreview.Maui.CommandLine
                         tempOutputFolder = Path.Combine(CsprojRootFolder, @$"bin\{Configuration}\xamarin");
                         if (!Directory.Exists(tempOutputFolder))
                             Directory.CreateDirectory(tempOutputFolder);
-                        StartMSBuild(CsprojRootFolder, $"dotnet msbuild {CsprojFileFullPath} /t:Build /p:Platform=\"AnyCPU\" /p:Configuration={Configuration}  /p:OutDir={tempOutputFolder}");
+                        StartMSBuild(CsprojRootFolder, $"msbuild {CsprojFileFullPath} /t:Build /p:Platform=\"AnyCPU\" /p:Configuration={Configuration}  /p:OutDir={tempOutputFolder}");
                     }
                     else
                     {
                         tempOutputFolder = Path.Combine(CsprojRootFolder, @$"bin\{Configuration}\net");
                         if (!Directory.Exists(tempOutputFolder))
                             Directory.CreateDirectory(tempOutputFolder);
-                        StartMSBuild(CsprojRootFolder, $"dotnet msbuild {CsprojFileFullPath} /t:Build /p:Platform=\"AnyCPU\" /p:Configuration={Configuration} /p:TargetFramework={Target} /p:OutDir={tempOutputFolder} ");
+                        StartMSBuild(CsprojRootFolder, $"msbuild {CsprojFileFullPath} /t:Build /p:Platform=\"AnyCPU\" /p:Configuration={Configuration} /p:TargetFramework={Target} /p:OutDir={tempOutputFolder} ");
                         //StartMSBuild(CsprojRootFolder, $"cmd /k \"C:\\Program Files\\Microsoft Visual Studio\\2022\\Preview\\Common7\\Tools\\VsDevCmd.bat\"");
                     }
                 }
