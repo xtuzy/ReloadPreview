@@ -11,8 +11,10 @@ It not only preview, because it need run app, that mean you can **show data and 
 
 **Support platform**
 
+- [x] net6.0-android maui (tested)
 - [x] net6.0-android (tested)
-- [x] net6.0-iOS (tested, can't reload object that extend object-c)
+- [x] net6.0-ios maui (tested, can't directly reload object that extend object-c)
+- [x] net6.0-ios (tested, can't directly reload object that extend object-c)
 - [ ] new6.0-mac
 - [ ] WPF
 - [ ] Xamarin
@@ -39,6 +41,40 @@ public App()
         MainPage = view;
     };
     MainPage = new MainPage();
+}
+
+```
+At ios platform,you can't reload class that extend from native object-c class, such as UIView,UIViewController,you can reload view like this:
+```
+public MainController(UIWindow window)
+{
+    HotReload.Instance.Init("192.168.0.108");
+    HotReload.Instance.Reload += () =>
+    {
+        dynamic view = HotReload.Instance.ReloadClass<MainPage>(window!.Frame);
+        this.View = view.Get() as UIView;
+    };
+    this.View = new MainPage(window!.Frame).Page;
+}
+```
+```
+public class MainPage
+{
+    public UIView Page;
+    public MainPage(CGRect frame)
+    {
+        Page =  new UILabel(frame)
+        {
+            BackgroundColor = UIColor.Red,
+            TextAlignment = UITextAlignment.Center,
+            Text = "Hello,net6-iOS!"
+        };
+    }
+
+    public UIView Get()
+    {
+        return Page;
+    }
 }
 ```
 
