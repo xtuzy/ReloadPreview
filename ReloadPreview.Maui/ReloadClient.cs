@@ -77,7 +77,7 @@ namespace ReloadPreview
             });
         }
 
-        public object ReloadClass<T>(object arg1=null,object arg2=null,object arg3=null)
+        public dynamic ReloadClass<T>(object arg1=null,object arg2=null,object arg3=null)
         {
             if (memoryStream == null) return null;
             var classFullName = typeof(T).FullName;
@@ -176,29 +176,20 @@ namespace ReloadPreview
 
     }
 
+    #if __IOS__ || __MACCATALYST__
     /// <summary>
     /// Reload class in class library that must extend this.
     /// </summary>
-    /*public interface IReload
+    public interface IReload
     {
         /// <summary>
-        /// When dll reload,will reload this method, you can deal with view in this.<br/>
-        /// Notice:<br/>
-        /// 1.If you creat model class and viewmodel at this class library,<br/> 
-        /// you can load then at this method, or after this method.<br/>
-        /// But when you creat class at this class library that extend native object of android or ios,<br/>
-        /// you can't load them, you should creat them at other class library, <br/>
-        /// then reference it at main project and this class library project, <br/>
-        /// because extend native class will generate some native language things, <br/>
-        /// reload just reload dll.<br/>
-        /// 2.According mvvm,best practice is use share library store viewmodel and model,<br/>
-        /// you can use test project reference them to test,<br/>
-        /// and also use this class library reference them to design ui.<br/>
+        /// Beacuse Apple's limit, if you want get object at you want reloaded class,
+        /// you can't do it like other platform, you need realize this method to get.
         /// </summary>
-        /// <param name="controller">maybe activity, fragment, uiviewcontroller, or anything, just need you know what it is</param>
-        /// <param name="view">maybe view,viewgroup, uiview, or anything, just need you know what it is</param>
-        object Reload(object controller, object view);
-    }*/
+        /// <returns></returns>
+        object Get();
+    }
+    #endif
 
 #if WINDOWS
     /// <summary>
