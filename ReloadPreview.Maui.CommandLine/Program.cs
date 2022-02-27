@@ -110,7 +110,7 @@ namespace ReloadPreview.Maui.CommandLine
 
                 // Create server
                 Server = MessageServer.CreatMessageServer(int.Parse(port));
-                Console.Title = $"{Server.MyIp}:{Server.Port}";
+                Console.Title = $"{Server.MyIp}:{Server.Port} {Target}";
                 FileWatcher = new FileWatcher(CsprojRootFolder);
 
                 AnsiConsole.MarkupLine($"[green]Hot Reload Is Running![/]");
