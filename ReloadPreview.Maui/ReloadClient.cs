@@ -178,7 +178,10 @@ namespace ReloadPreview
 
     #if __IOS__ || __MACCATALYST__
     /// <summary>
-    /// Reload class in class library that must extend this.
+    /// You can use yourself interface or class that defined at another assembly. 
+    /// Because Apple's limit, can't directly use dynamic to load property or method, 
+    /// we need define property or method by interface at other assembly that not be reloaded, 
+    /// then we can use (dynamic as YourInterface).YourMethod()
     /// </summary>
     public interface IReload
     {
