@@ -6,11 +6,9 @@
     <ImplicitUsings>true</ImplicitUsings>
     <SupportedOSPlatformVersion>11.2</SupportedOSPlatformVersion>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <MtouchExtraArgs>--interpreter</MtouchExtraArgs>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <MtouchExtraArgs>--interpreter</MtouchExtraArgs>
+
+  <PropertyGroup Condition="'$(RunConfiguration)'=='Default'">
+    <ExtraLaunchArgs></ExtraLaunchArgs>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\ReloadPreview.Maui\ReloadPreview.Maui.csproj" />

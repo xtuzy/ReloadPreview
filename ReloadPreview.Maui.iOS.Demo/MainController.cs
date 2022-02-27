@@ -15,8 +15,7 @@ namespace ReloadPreview.Maui.iOS.Demo
             HotReload.Instance.Reload += () =>
             {
                 dynamic view = HotReload.Instance.ReloadClass<MainPage>(window!.Frame);
-                Console.WriteLine($"view is IReload:{view is IReload}");
-                this.View = (view as IReload).Get() as UIView;
+                this.View = view.Get() as UIView;
             };
             this.View = new MainPage(window!.Frame).Page;
         }

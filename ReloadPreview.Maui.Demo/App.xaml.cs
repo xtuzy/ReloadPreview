@@ -8,8 +8,8 @@
             InitializeComponent();
             HotReload.Instance.Reload += () =>
             {
-                var view = HotReload.Instance.ReloadClass<MainPage>() as Page;
-                Console.WriteLine(view is null);
+                var view = HotReload.Instance.ReloadClass<MainPage>();
+                Console.WriteLine($"view.Get() is Lable:{view.Get()}");
                 MainPage = view;
             };
             MainPage = new MainPage();

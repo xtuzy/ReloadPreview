@@ -6,20 +6,20 @@ using System.Threading.Tasks;
 
 namespace ReloadPreview.Maui.iOS.Demo
 {
-    internal class MainPage:IReload
+    public class MainPage
     {
         public UIView Page;
         public MainPage(CGRect frame)
         {
              Page =  new UILabel(frame)
              {
-                 BackgroundColor = UIColor.Yellow,
+                 BackgroundColor = UIColor.Red,
                  TextAlignment = UITextAlignment.Center,
                  Text = "Hello,net6-iOS!"
              };
         }
 
-        public object Get()
+        public UIView Get()
         {
             return Page;
         }

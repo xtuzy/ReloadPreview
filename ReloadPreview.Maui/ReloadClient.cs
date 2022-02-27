@@ -176,23 +176,6 @@ namespace ReloadPreview
 
     }
 
-    #if __IOS__ || __MACCATALYST__
-    /// <summary>
-    /// You can use yourself interface or class that defined at another assembly. 
-    /// Because Apple's limit, can't directly use dynamic to load property or method, 
-    /// we need define property or method by interface at other assembly that not be reloaded, 
-    /// then we can use (dynamic as YourInterface).YourMethod()
-    /// </summary>
-    public interface IReload
-    {
-        /// <summary>
-        /// Beacuse Apple's limit, if you want get object at you want reloaded class,
-        /// you can't do it like other platform, you need realize this method to get.
-        /// </summary>
-        /// <returns></returns>
-        object Get();
-    }
-    #endif
 
 #if WINDOWS
     /// <summary>
