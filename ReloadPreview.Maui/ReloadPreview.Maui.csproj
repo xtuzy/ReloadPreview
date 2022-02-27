@@ -12,11 +12,26 @@
     <SupportedOSPlatformVersion Condition="'$(TargetFramework)' == 'net6.0-android'">21.0</SupportedOSPlatformVersion>
     <SupportedOSPlatformVersion Condition="$(TargetFramework.Contains('-windows'))">10.0.17763.0</SupportedOSPlatformVersion>
     <TargetPlatformMinVersion Condition="$(TargetFramework.Contains('-windows'))">10.0.17763.0</TargetPlatformMinVersion>
+    <Version>3.0.2</Version>
+    <Authors>zhouyang</Authors>
+    <Description>ReloadPreview provide fast preview coding ui function in net6-platform, and wpf, let you love design ui use code. It be realized by reload dll by reflect.</Description>
+    <Copyright>@zhouyang. All rights reserved.</Copyright>
+    <RepositoryUrl>https://github.com/xtuzy/ReloadPreview</RepositoryUrl>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageTags>net6,xamarin,wpf,ui,hotreload</PackageTags>
+    <PackageReleaseNotes>created for maui single project</PackageReleaseNotes>
+    <PackageLicenseFile>D:\Work\ReloadPreview\LICENSE.txt</PackageLicenseFile>
   </PropertyGroup>
 
   <Import Project="Microsoft.Maui.Graphics.Controls.MultiTargeting.targets" />
   <ItemGroup>
      <None Remove="Microsoft.Maui.Graphics.Controls.MultiTargeting.targets" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="System.Text.Json" Version="6.0.2" />
