@@ -11,8 +11,8 @@ namespace ReloadPreview.Maui.Android.Demo
             base.OnCreate(savedInstanceState);
             HotReload.Instance.Reload += () =>
             {
-                var view = HotReload.Instance.ReloadClass<MainPage>(this) as View;
-                Console.WriteLine(view is null);
+                var view = HotReload.Instance.ReloadClass<MainPage>(this);
+                Console.WriteLine($"view.Get() is Button:{view.Get() is Button}");
                 SetContentView(view);
             };
             // Set our view from the "main" layout resource
