@@ -304,12 +304,6 @@ namespace ReloadPreview.Maui.CommandLine
 
         static string FindAssamble(string folderPath, string assambelName)
         {
-            foreach (var folder in Directory.EnumerateDirectories(folderPath))
-            {
-                var f = FindAssamble(folder, assambelName);
-                if (f != string.Empty)
-                    return f;
-            }
             foreach (var file in Directory.EnumerateFiles(folderPath))
             {
                 if (file.Contains(assambelName))
@@ -317,6 +311,14 @@ namespace ReloadPreview.Maui.CommandLine
                     return file;
                 }
             }
+
+            foreach (var folder in Directory.EnumerateDirectories(folderPath))
+            {
+                var f = FindAssamble(folder, assambelName);
+                if (f != string.Empty)
+                    return f;
+            }
+            
             return string.Empty;
         }
 
