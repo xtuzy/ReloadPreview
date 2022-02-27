@@ -20,7 +20,6 @@
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageTags>net6,xamarin,wpf,ui,hotreload</PackageTags>
     <PackageReleaseNotes>created for maui single project</PackageReleaseNotes>
-    <PackageLicenseFile>D:\Work\ReloadPreview\LICENSE.txt</PackageLicenseFile>
     <AssemblyName>ReloadPreview</AssemblyName>
     <RootNamespace>ReloadPreview</RootNamespace>
   </PropertyGroup>
