@@ -65,11 +65,18 @@ namespace ReloadPreview.Maui.CommandLine
                     }
                     else
                     {
-                        var rule = new Rule("[green]File Changed[/]");
+                        AnsiConsole.WriteLine();
+                        var rule = new Rule("[green]Reload Start[/]");
                         rule.Alignment = Justify.Left;
                         AnsiConsole.Write(rule);
                         AnsiConsole.WriteLine();
+
                         Program.BuildAndSendDll();
+
+                        rule = new Rule("[green]Reload Finished[/]");
+                        rule.Alignment = Justify.Left;
+                        AnsiConsole.Write(rule);
+                        
                         await Task.Delay(800);
                         isChanged = false;
                     }
