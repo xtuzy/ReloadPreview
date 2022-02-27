@@ -22,9 +22,9 @@ namespace ReloadPreview.Maui.CommandLine
             };
             fileWatcher.InternalBufferSize = 64 * 1024;
             fileWatcher.Changed += FileWatcher_Changed;
-            //fileWatcher.Created += FileWatcher_Created;
+            fileWatcher.Created += FileWatcher_Changed;
             //fileWatcher.Deleted += FileWatcher_Deleted;
-            //fileWatcher.Renamed += FileWatcher_Renamed;
+            fileWatcher.Renamed += FileWatcher_Changed;
             fileWatcher.Error += FileWatcher_Error;
             fileWatcher.EnableRaisingEvents = true;
 
@@ -55,12 +55,12 @@ namespace ReloadPreview.Maui.CommandLine
             if (isChanged) return;
             else
             {
+                isChanged = true;
                 Task.Run(async () =>
                 {
-                    isChanged = true;
                     if (e.FullPath.Contains("bin") || e.FullPath.Contains("obj"))
                     {
-                        await Task.Delay(1000);
+                        await Task.Delay(2000);
                         isChanged = false;
                     }
                     else
