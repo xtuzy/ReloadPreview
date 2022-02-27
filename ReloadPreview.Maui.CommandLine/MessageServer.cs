@@ -142,6 +142,12 @@ namespace ReloadPreview.Maui.CommandLine
 
         public void SendFile(string filePath)
         {
+            if(CurrentClients.Count == 0)
+            {
+                AnsiConsole.MarkupLine("[yellow]No App Linked,Please Run App To Link[/]");
+                return;
+            }
+                
             AnsiConsole.MarkupLine("[green]Start Read Dll {0} [/]", filePath);
             byte[] m_byBuff = new byte[1024 * 1024];
             byte[] bytes;
