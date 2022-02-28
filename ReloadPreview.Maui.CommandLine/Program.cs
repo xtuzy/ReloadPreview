@@ -144,6 +144,12 @@ namespace ReloadPreview.Maui.CommandLine
 
         internal static void BuildAndSendDll()
         {
+            if (Server.CurrentClients.Count == 0)
+            {
+                AnsiConsole.MarkupLine("[yellow]No App Linked,Not Build[/]");
+                return;
+            }
+
             AnsiConsole.MarkupLine("[green]Start MSBuild[/]");
             try
             {
