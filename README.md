@@ -15,7 +15,8 @@ It not only preview, because it need run app, that mean you can **show data and 
 - [x] net6.0-android (tested)
 - [x] net6.0-ios maui (tested, can't directly reload object that extend object-c)
 - [x] net6.0-ios (tested, can't directly reload object that extend object-c)
-- [ ] new6.0-mac
+- [ ] new6.0-macos
+- [x] .net avalonia(tested,need load ReloadClass< Control > in UI thread)
 - [ ] WPF
 - [ ] Xamarin
 
@@ -67,7 +68,7 @@ public class MainPage
         {
             BackgroundColor = UIColor.Red,
             TextAlignment = UITextAlignment.Center,
-            Text = "Hello,net6-iOS!"
+            Text = "Hello,net6-ios!"
         };
     }
 
@@ -77,7 +78,31 @@ public class MainPage
     }
 }
 ```
+At not MAUI support others Ui framework, maybe you need load ReloadClass< T > in UI thread,such as Avalonia:
+```
+public partial class MainWindow : Window
+{
+    public MainWindow()
+    {
+        InitializeComponent();
+#if DEBUG
+        this.AttachDevTools();
+#endif
 
+#if DEBUG
+        HotReload.Instance.Reload += () =>
+        {
+            Dispatcher.UIThread.Post(() =>
+            {
+                var view = HotReload.Instance.ReloadClass<MainPage>();
+                this.Content = view;
+            });
+        };
+        HotReload.Instance.Init("192.168.0.108");
+#endif
+    }
+}
+```
 ## Tips
 
 - 2021.10.21
