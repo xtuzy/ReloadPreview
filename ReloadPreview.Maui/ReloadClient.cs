@@ -77,6 +77,14 @@ namespace ReloadPreview
             });
         }
 
+        /// <summary>
+        /// This will create a object by reflect, Notice at some platform create ui object need in UI thread.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="arg1"></param>
+        /// <param name="arg2"></param>
+        /// <param name="arg3"></param>
+        /// <returns></returns>
         public dynamic ReloadClass<T>(object arg1=null,object arg2=null,object arg3=null)
         {
             if (memoryStream == null) return null;
