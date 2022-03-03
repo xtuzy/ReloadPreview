@@ -7,14 +7,14 @@
         public MainPage()
         {
             InitializeComponent();
-            CounterLabel.Text = "New Page 8";
+            CounterLabel.Text = "New Page";
             CounterLabel.TextColor = Colors.Green;
         }
 
         private void OnCounterClicked(object sender, EventArgs e)
         {
             count++;
-            CounterLabel.Text = $"The Current count is a: {count}";
+            CounterLabel.Text = $"The Current count: {count}";
             CounterLabel.TextColor = Colors.Red;
             SemanticScreenReader.Announce(CounterLabel.Text);
         }

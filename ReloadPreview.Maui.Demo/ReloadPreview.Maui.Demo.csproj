@@ -9,7 +9,6 @@
 		<SingleProject>true</SingleProject>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<EnablePreviewMsixTooling>true</EnablePreviewMsixTooling>
-
 		<!-- Display name -->
 		<ApplicationTitle>ReloadPreview.Maui.Demo</ApplicationTitle>
 

@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
 using System.Text.Json;
-
+using Console = System.Diagnostics.Debug;
 #if ANDROID
 using Android.OS;
 #endif
@@ -68,11 +68,17 @@ namespace ReloadPreview
                 MessageClientProgram.AcceptedStreamEvent += (stream) =>
                 {
                     memoryStream = stream;
-                    InvokeInMainThread(() =>
+                    try
                     {
-                        if (Reload != null)
-                            Reload.Invoke();
-                    });
+                        InvokeInMainThread(() =>
+                        {
+                            if (Reload != null)
+                                Reload.Invoke();
+                        });
+                    }catch(Exception e)
+                    {
+                        Console.Write(e);
+                    }
                 };
             });
         }
@@ -149,12 +155,8 @@ namespace ReloadPreview
         /// <param name="action"></param>
         public virtual void InvokeInMainThread(Action action)
         {
-#if WINDOWS
-            var dispatcher = Windows.ApplicationModel.Core.CoreApplication.MainView?.CoreWindow?.Dispatcher;
-
-            if (dispatcher == null)
-                throw new InvalidOperationException("Unable to find main thread.");
-            dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () => action()).AsTask().WatchForError();
+#if __WINDOWS__
+            //Microsoft.Maui.Essentials.MainThread.BeginInvokeOnMainThread(action);
             // #if WPF
             //                System.Windows.Application.Current.Dispatcher.Invoke(() =>
             //                {
@@ -171,11 +173,11 @@ namespace ReloadPreview
             {
                 action.Invoke();
             });
-#elif ANDROID
+#elif __ANDROID__
             if (handler?.Looper != Android.OS.Looper.MainLooper)
              handler = new Handler(Looper.MainLooper);
             handler.Post(action);
-#elif IOS
+#elif __IOS__
             Foundation.NSRunLoop.Main.BeginInvokeOnMainThread(action.Invoke);
 #else
             action.Invoke();

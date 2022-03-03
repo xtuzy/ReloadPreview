@@ -1,7 +1,7 @@
 ﻿using System.Net;
 using System.Net.Sockets;
 using System.Text;
-
+using Console = System.Diagnostics.Debug;
 
 namespace ReloadPreview
 {
