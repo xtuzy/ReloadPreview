@@ -27,6 +27,8 @@ Need other platform? Invoke UI thread when change ui at Reload event, or overrid
 After code changed, *Command Line Server* use msbuild to create new dll, then use socket send the .dll to android or ios app, app can use reflection to create instance from dll. 
 So, you can remove old view form window, and use this instance of new view to do something.
 
+**Notice: you must let reloaded class is public, because it is reload another assembly.**
+
 ## How to use
 Install and Run *Command Line Server* , input proj and target, such as `D:/RelodPreview/ReloadPreview.csproj -t=android`.
 Them install nuget, use it, such as at MAUI app:
