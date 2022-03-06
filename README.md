@@ -1,4 +1,6 @@
-# ReloadPreview
+
+# ReloadPreview 
+![image](https://github.com/xtuzy/ReloadPreview/blob/master/README.assets/hotreload.png)
 
 [![NuGet version(ReloadPreview)](https://img.shields.io/nuget/v/ReloadPreview?label=ReloadPreview)](https://www.nuget.org/packages/ReloadPreview/)
 
@@ -77,7 +79,7 @@ public class MainPage
     }
 }
 ```
-At not MAUI support others Ui framework, maybe you need load ReloadClass< T > in UI thread,such as Avalonia:
+At not Android and iOS, maybe you need load ReloadClass< T > in UI thread,such as at Avalonia:
 ```
 public partial class MainWindow : Window
 {
