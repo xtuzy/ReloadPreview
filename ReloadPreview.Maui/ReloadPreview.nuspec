@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
   <metadata>
     <id>ReloadPreview</id>
-    <version>3.0.4</version>
+    <version>3.0.5</version>
     <authors>zhouyang</authors>
     <licenseUrl>https://github.com/xtuzy/ReloadPreview/blob/master/LICENSE.txt</licenseUrl>
     <readme>README.md</readme>
@@ -24,22 +24,18 @@
       <group targetFramework="net6.0-maccatalyst15.2">
         <dependency id="System.Text.Json" version="6.0.2" exclude="Build,Analyzers" />
       </group>
-      <group targetFramework="net6.0-windows10.0.19041">
-        <dependency id="System.Text.Json" version="6.0.2" exclude="Build,Analyzers" />
-      </group>
       <group targetFramework=".NETStandard2.0">
         <dependency id="System.Text.Json" version="6.0.2" exclude="Build,Analyzers" />
       </group>
     </dependencies>
   </metadata>
   <files>
-    <file src="D:\Work\ReloadPreview\ReloadPreview.Maui\bin\Release\net6.0\ReloadPreview.dll" target="lib\net6.0\ReloadPreview.dll" />
-    <file src="D:\Work\ReloadPreview\ReloadPreview.Maui\bin\Release\net6.0-android\ReloadPreview.dll" target="lib\net6.0-android31.0\ReloadPreview.dll" />
-    <file src="D:\Work\ReloadPreview\ReloadPreview.Maui\bin\Release\net6.0-android\ReloadPreview.xml" target="lib\net6.0-android31.0\ReloadPreview.xml" />
-    <file src="D:\Work\ReloadPreview\ReloadPreview.Maui\bin\Release\net6.0-ios\ReloadPreview.dll" target="lib\net6.0-ios15.2\ReloadPreview.dll" />
-    <file src="D:\Work\ReloadPreview\ReloadPreview.Maui\bin\Release\net6.0-maccatalyst\ReloadPreview.dll" target="lib\net6.0-maccatalyst15.2\ReloadPreview.dll" />
-    <file src="D:\Work\ReloadPreview\ReloadPreview.Maui\bin\Release\net6.0-windows10.0.19041\ReloadPreview.dll" target="lib\net6.0-windows10.0.19041\ReloadPreview.dll" />
-    <file src="D:\Work\ReloadPreview\ReloadPreview.Maui\bin\Release\netstandard2.0\ReloadPreview.dll" target="lib\netstandard2.0\ReloadPreview.dll" />
+    <file src="D:\Work\ReloadPreview\ReloadPreview.Maui\bin\Debug\net6.0\ReloadPreview.dll" target="lib\net6.0\ReloadPreview.dll" />
+    <file src="D:\Work\ReloadPreview\ReloadPreview.Maui\bin\Debug\net6.0-android\ReloadPreview.dll" target="lib\net6.0-android31.0\ReloadPreview.dll" />
+    <file src="D:\Work\ReloadPreview\ReloadPreview.Maui\bin\Debug\net6.0-android\ReloadPreview.xml" target="lib\net6.0-android31.0\ReloadPreview.xml" />
+    <file src="D:\Work\ReloadPreview\ReloadPreview.Maui\bin\Debug\net6.0-ios\ReloadPreview.dll" target="lib\net6.0-ios15.2\ReloadPreview.dll" />
+    <file src="D:\Work\ReloadPreview\ReloadPreview.Maui\bin\Debug\net6.0-maccatalyst\ReloadPreview.dll" target="lib\net6.0-maccatalyst15.2\ReloadPreview.dll" />
+    <file src="D:\Work\ReloadPreview\ReloadPreview.Maui\bin\Debug\netstandard2.0\ReloadPreview.dll" target="lib\netstandard2.0\ReloadPreview.dll" />
     <file src="D:\Work\ReloadPreview\README.md" target="\README.md" />
   </files>
 </package>

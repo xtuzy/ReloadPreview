@@ -11,14 +11,11 @@ It not only preview, because it need run app, that mean you can **show data and 
 
 **Support platform**
 
-- [x] net6.0-android maui (tested)
+
 - [x] net6.0-android (tested)
-- [x] net6.0-ios maui (tested, can't directly reload object that extend object-c)
 - [x] net6.0-ios (tested, can't directly reload object that extend object-c)
-- [ ] new6.0-macos
-- [x] .net avalonia(tested,need load ReloadClass< Control > in UI thread)
-- [ ] WPF
-- [ ] Xamarin
+- [x] new6.0 and netstandard (such as maui-windows,or avalonia,need load ReloadClass< Control > in UI thread)
+
 
 Need other platform? Invoke UI thread when change ui at Reload event, or override [`InvokeInMainThread`](https://github.com/xtuzy/ReloadPreview/blob/91de63909a1fb480e3a0f6ac7f6acf6f44bbe20d/ReloadPreview/ReloadClient.cs#L161) method.
 

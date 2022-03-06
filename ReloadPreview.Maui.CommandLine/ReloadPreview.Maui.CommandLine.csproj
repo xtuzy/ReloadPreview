@@ -5,7 +5,12 @@
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <ApplicationIcon>hotreload.ico</ApplicationIcon>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="hotreload.ico" />
+  </ItemGroup>
   <ItemGroup>
       <PackageReference Include="Mono.Options" Version="6.12.0.148" />
       <PackageReference Include="Spectre.Console" Version="0.43.1-preview.0.40" />
