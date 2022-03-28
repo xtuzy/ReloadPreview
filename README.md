@@ -79,6 +79,8 @@ public class MainPage
     }
 }
 ```
+Notice:If you build at windows, you need let VisualStudio for Windows link to Mac, otherwise maybe generate dll is not correct.
+
 At not Android and iOS, maybe you need load ReloadClass< T > in UI thread,such as at Avalonia:
 ```
 public partial class MainWindow : Window
