@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
   <metadata>
     <id>ReloadPreview</id>
-    <version>3.0.5</version>
+    <version>3.0.6</version>
     <authors>zhouyang</authors>
     <licenseUrl>https://github.com/xtuzy/ReloadPreview/blob/master/LICENSE.txt</licenseUrl>
     <readme>README.md</readme>

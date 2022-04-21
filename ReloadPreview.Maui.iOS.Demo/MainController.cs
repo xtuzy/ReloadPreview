@@ -11,7 +11,7 @@ namespace ReloadPreview.Maui.iOS.Demo
     {
         public MainController(UIWindow window)
         {
-            HotReload.Instance.Init("192.168.0.108");
+            HotReload.Instance.Init("192.168.0.144");
             HotReload.Instance.Reload += () =>
             {
                 dynamic view = HotReload.Instance.ReloadClass<MainPage>(window!.Frame);

@@ -19,13 +19,15 @@ namespace ReloadPreview.Maui.CommandLine
 
         static async Task Main(string[] args)
         {
+            Console.WriteLine("Please Input:projectFolderPath -t=TargetFramework -p=Port");
+            Console.WriteLine("TargetFramework (net,net6,net6.0-ios,net6.0-android,net6.0-maccatalyst,net6.0-windows,xamarin...)");
+            Console.WriteLine("Port (100,200,300...(Default is 500))");
         REINPUT:
             if (args == null || args.Length == 0)
             {
                 var command = Console.ReadLine();
                 args = command.Split(" ");
             }
-
 
             string port = "500";
             Target = "net6.0-ios";
@@ -42,7 +44,6 @@ namespace ReloadPreview.Maui.CommandLine
                 { "f|folder=", "Root folder for the solution (Defaults to the CSProj Folder)", x=> CsprojRootFolder = x },
                 { "h|help", "show this message and exit", h => shouldShowHelp = h != null },
             };
-
 
             List<string> extra;
             try
@@ -98,7 +99,6 @@ namespace ReloadPreview.Maui.CommandLine
                 args = null;
                 goto REINPUT;
             }
-
 
             try
             {
@@ -324,7 +324,7 @@ namespace ReloadPreview.Maui.CommandLine
                 if (f != string.Empty)
                     return f;
             }
-            
+
             return string.Empty;
         }
 

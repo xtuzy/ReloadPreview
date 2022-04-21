@@ -11,12 +11,12 @@ namespace ReloadPreview.Maui.iOS.Demo
         public UIView Page;
         public MainPage(CGRect frame)
         {
-             Page =  new UILabel(frame)
-             {
-                 BackgroundColor = UIColor.Red,
-                 TextAlignment = UITextAlignment.Center,
-                 Text = "Hello,net6-iOS!"
-             };
+            Page = new UILabel(frame)
+            {
+                BackgroundColor = UIColor.Red,
+                TextAlignment = UITextAlignment.Center,
+                Text = "Hello,net6-iOS!"
+            };
         }
 
         public UIView Get()
