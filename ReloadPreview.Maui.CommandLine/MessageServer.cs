@@ -38,7 +38,6 @@ namespace ReloadPreview.Maui.CommandLine
             // Welcome and Start listening
             //Console.WriteLine("*** Server Started {0} ***", DateTime.Now.ToString("G"));
 
-
             //const int nPortListen = 399;
             int nPortListen = port;
             App.Port = port;
@@ -78,7 +77,7 @@ namespace ReloadPreview.Maui.CommandLine
 
             foreach (var ip in aryLocalAddr)
             {
-                if (ip.AddressFamily == AddressFamily.InterNetwork)
+                if (ip.AddressFamily == AddressFamily.InterNetwork && ip.ToString().Contains("192.168"))//@zhouyang add at 20220422:sometimes ip become 172., we limited it only use 192.
                 {
                     App.MyIp = ip;
                     try
@@ -94,13 +93,13 @@ namespace ReloadPreview.Maui.CommandLine
                     }
                     catch (Exception ex)
                     {
-                       if(ex is System.ArgumentOutOfRangeException)
+                        if (ex is System.ArgumentOutOfRangeException)
                         {
                             AnsiConsole.WriteException(ex);
                             AnsiConsole.MarkupLine("[red]Restart App Input True Port[/]");
                         }
                     }
-                    
+
                     break;
                 }
             }
@@ -136,18 +135,18 @@ namespace ReloadPreview.Maui.CommandLine
             if (sockClient == null)
                 return;
             CurrentClients.Add(sockClient);
-            ConnectEvent?.Invoke(this,EventArgs.Empty);
+            ConnectEvent?.Invoke(this, EventArgs.Empty);
             AnsiConsole.MarkupLine("[green]Connect From Client {0}, Joined [/]", sockClient.RemoteEndPoint);
         }
 
         public void SendFile(string filePath)
         {
-            if(CurrentClients.Count == 0)
+            if (CurrentClients.Count == 0)
             {
                 AnsiConsole.MarkupLine("[yellow]No App Linked,Please Run App To Link[/]");
                 return;
             }
-                
+
             AnsiConsole.MarkupLine("[green]Start Read Dll {0} [/]", filePath);
             byte[] m_byBuff = new byte[1024 * 1024];
             byte[] bytes;
@@ -170,16 +169,16 @@ namespace ReloadPreview.Maui.CommandLine
                     var okBytesLength = sock.Receive(m_byBuff, m_byBuff.Length, SocketFlags.None);//接收数据长度
                     if (Encoding.ASCII.GetString(m_byBuff, 0, okBytesLength) == "OK")
                     {
-                        AnsiConsole.MarkupLine("[green]Start Send Dll {0} KB To {1} At {2} [/]", bytes.Length/1000, sock.RemoteEndPoint, DateTime.Now);
+                        AnsiConsole.MarkupLine("[green]Start Send Dll {0} KB To {1} At {2} [/]", bytes.Length / 1000, sock.RemoteEndPoint, DateTime.Now);
                         sock.Send(bytes);
                         AnsiConsole.MarkupLine("[green]Finish Send Dll To {0} At {1} [/]", sock.RemoteEndPoint, DateTime.Now);
                     }
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     // If the send fails the close the connection
                     AnsiConsole.WriteException(ex);
-                        
+
                     AnsiConsole.MarkupLine("[yellow]Fail Send Dll To Client {0} , Will Remove It [/]", sock.RemoteEndPoint);
                     sock.Close();
                     removeClient.Add(sock);
@@ -190,7 +189,7 @@ namespace ReloadPreview.Maui.CommandLine
             {
                 CurrentClients.Remove(sock);
             }
-            if(removeClient.Count > 0)
+            if (removeClient.Count > 0)
                 ConnectEvent?.Invoke(this, new EventArgs());
         }
 
