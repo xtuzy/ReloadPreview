@@ -38,13 +38,21 @@ public App()
     InitializeComponent();
     HotReload.Instance.Reload += () =>
     {
-        var view = HotReload.Instance.ReloadClass<MainPage>() as Page;
+        var view = HotReload.Instance.ReloadClass<ReloadPageManager>().ReloadPage();
         Console.WriteLine(view is null);
         MainPage = view;
     };
     MainPage = new MainPage();
 }
 
+public class ReloadPageManager
+{
+    public Page ReloadPage()
+    {
+        //You can specify Page that you want to reload after change code. It will create Page object use new code.
+        return HotReload.Instance.ReloadClass<OtherPage>()
+    }
+}
 ```
 At ios platform,you can't reload class that extend from native object-c class, such as UIView,UIViewController,you can reload view like this:
 ```
