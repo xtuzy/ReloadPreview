@@ -11,7 +11,7 @@
     <SupportedOSPlatformVersion Condition="'$(TargetFramework)' == 'net6.0-android'">21.0</SupportedOSPlatformVersion>
     <SupportedOSPlatformVersion Condition="$(TargetFramework.Contains('-windows'))">10.0.17763.0</SupportedOSPlatformVersion>
     <TargetPlatformMinVersion Condition="$(TargetFramework.Contains('-windows'))">10.0.17763.0</TargetPlatformMinVersion>
-    <Version>3.0.6</Version>
+    <Version>3.0.7</Version>
     <Authors>zhouyang</Authors>
     <Description>ReloadPreview provide fast preview coding ui function in net6-platform, and wpf, let you love design ui use code. It be realized by reload dll by reflect.</Description>
     <Copyright>@zhouyang. All rights reserved.</Copyright>
@@ -21,6 +21,7 @@
     <PackageReleaseNotes>build for maui rc1</PackageReleaseNotes>
     <AssemblyName>ReloadPreview</AssemblyName>
     <RootNamespace>ReloadPreview</RootNamespace>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>

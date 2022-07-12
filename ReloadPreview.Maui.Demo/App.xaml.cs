@@ -4,7 +4,7 @@
     {
         public App()
         {
-            HotReload.Instance.Init("192.168.0.108");
+            HotReload.Instance.Init("192.168.0.144");
             InitializeComponent();
             HotReload.Instance.Reload += () =>
             {
