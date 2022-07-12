@@ -10,8 +10,7 @@
             {
                 Application.Current.Dispatcher.Dispatch(() =>
                 {
-                    var view = HotReload.Instance.ReloadClass<MainPage>();
-                    Console.WriteLine($"view.Get() is Lable:{view.Get()}");
+                    var view = HotReload.Instance.ReloadClass<ReloadPageManager>().ReloadPage();
                     MainPage = view;
                 });
             };

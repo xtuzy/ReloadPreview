@@ -47,6 +47,14 @@
   <ItemGroup>
     <ProjectReference Include="..\ReloadPreview.Maui\ReloadPreview.Maui.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <MauiXaml Update="Pages\SecondPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Pages\ThirdPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+  </ItemGroup>
 
   <PropertyGroup Condition="$(TargetFramework.Contains('-windows'))">
     <OutputType>WinExe</OutputType>
