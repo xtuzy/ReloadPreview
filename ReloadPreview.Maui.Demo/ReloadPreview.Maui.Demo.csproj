@@ -48,6 +48,9 @@
     <ProjectReference Include="..\ReloadPreview.Maui\ReloadPreview.Maui.csproj" />
   </ItemGroup>
   <ItemGroup>
+    <MauiXaml Update="Pages\FourthPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
     <MauiXaml Update="Pages\SecondPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </MauiXaml>

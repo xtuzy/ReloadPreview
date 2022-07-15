@@ -6,6 +6,7 @@
     <VerticalStackLayout>
         <Label 
             Text="ThirdPage!"
+            TextColor="Red"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
     </VerticalStackLayout>

@@ -11,7 +11,7 @@ namespace ReloadPreview.Maui.Demo
     {
         public Page ReloadPage()
         {
-            return HotReload.Instance.ReloadClass<SecondPage>();
+            return HotReload.Instance.ReloadClass<FourthPage>();
         }
     }
 }
