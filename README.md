@@ -4,13 +4,16 @@
 
 [![NuGet version(ReloadPreview)](https://img.shields.io/nuget/v/ReloadPreview?label=ReloadPreview)](https://www.nuget.org/packages/ReloadPreview/)
 
-[Command Line Server](https://github.com/xtuzy/ReloadPreview/releases)
+[Command Line Server Tool](https://github.com/xtuzy/ReloadPreview/releases)
 
 ## What is ReloadPreview
 
-We know we can preview the ui when use xaml,xml,storyboard,swiftui, but if you want use C# code to write ui, no preview? Now, you can use this library to do it. 
-It not only preview, because it need run app, that mean you can **show data and load service**, and debug by print info.
+We know we have a designer to preview the ui when use wpf's xaml, android's xml, ios's storyboard, ios's swiftui. But when you use Maui xaml or use C# code to write ui, no designer to preview! Now, you can use this library to preview ui when you use xaml or code describe ui.
 
+It like xaml HotReload, because it need run app, but it not rely on VisualStudio, it only need app run. Another, it also work when you add new xaml.
+It like designer, because it only preview Page, but it run at device, if you use it at Maui, you can get more correct ui than designer.
+
+It have a shortcoming, slower than HotReload and designer, build WinUi project need 10s, 
 **Support platform**
 
 
@@ -23,7 +26,7 @@ Need other platform? Invoke UI thread when change ui at Reload event, or overrid
 
 ## How it work
 
-After code changed, *Command Line Server* use msbuild to create new dll, then use socket send the .dll to android or ios app, app can use reflection to create instance from dll. 
+After code changed, *Command Line Server Tool* use msbuild to create new dll, then use socket send the .dll to android or ios app, app can use reflection to create instance from dll. 
 So, you can remove old view form window, and use this instance of new view to do something.
 
 **Notice: you must let reloaded class is public, because it is reload another assembly.**
