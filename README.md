@@ -13,7 +13,8 @@ We know we have a designer to preview the ui when use wpf's xaml, android's xml,
 It like xaml HotReload, because it need run app, but it not rely on VisualStudio, it only need app run. Another, it also work when you add new xaml.
 It like designer, because it only preview Page, but it run at device, if you use it at Maui, you can get more correct ui than designer.
 
-It have a shortcoming, slower than HotReload and designer, build WinUi project need 10s, 
+It have a shortcoming, slower than HotReload and designer, build WinUI project need 10s, i find MSBuild compile class library is fast, i try add `/p:OutputType=Library `, but no improve, i delete `<OutputType>Exe</OutputType>` in .csproj, Android and iOS project need 3s, WinUI still need 10s, so you can add a .csproj for ReloadPreview. If you know hoe to let it fast, please tell me!!!
+
 **Support platform**
 
 
