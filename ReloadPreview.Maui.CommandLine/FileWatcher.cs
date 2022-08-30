@@ -17,9 +17,10 @@ namespace ReloadPreview.Maui.CommandLine
             this.filePath = filePath;
             fileWatcher = new FileSystemWatcher(filePath)
             {
-                Filter = "*.cs",
                 IncludeSubdirectories = true,
             };
+            fileWatcher.Filters.Add("*.xaml");
+            fileWatcher.Filters.Add("*.cs");
             fileWatcher.InternalBufferSize = 64 * 1024;
             fileWatcher.Changed += FileWatcher_Changed;
             fileWatcher.Created += FileWatcher_Changed;
